@@ -1,0 +1,8 @@
+TODO:
+- Docbook Vorlage erstellen -> THEA
+- Tutorials durcharbeiten
+    - XPATH
+    - XSLT
+    - XQUERY
+    - XSD/ XML Schema (-> Ersatz für DTD?)
+    - Namensräume und Kodierungsformen in XML
