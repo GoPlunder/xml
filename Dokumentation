@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-model href="http://docbook.org/xml/5.0/rng/docbook.rng" schematypens="http://relaxng.org/ns/structure/1.0"?>
+<?xml-model href="http://docbook.org/xml/5.0/rng/docbook.rng" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?>
+<book xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" version="5.0">
+    <info>
+        <title>XML-Praktikum SS 2015</title>
+        <author>
+            <personname>Belinda Zahra</personname>
+            <email>belindazahra@yahoo.de</email>
+        </author>
+        <author>
+            <personname>Thea Heim</personname>
+            <email>thea.heim@web.de</email>
+        </author>   
+    </info>
+    <chapter>
+        <title>Einleitung</title>
+        <sect1>
+            <title>Beschreibung und Motivation von CalendarX</title>
+            <para>Text</para>
+        </sect1>
+        <sect1>
+            <title>Ziel und Organisation des XML-Praktikums</title>
+            <para>Text</para>
+        </sect1>
+    </chapter>
+    <chapter>
+        <title>Das Kalender-System CalendarX</title>
+        <sect1>
+            <title>XML Schema: Die Architektur von CalendarX</title>
+            <para>Das konzeptuelle Schema für Kalender-Daten</para>
+        </sect1>
+        <sect1>
+            <title>SVG: Umsetzung der Tages-, Wochen und Monatssicht</title>
+            <para></para>
+        </sect1>
+        <sect1>
+            <title>Benutzeroberfläche</title>
+            <para>Beschreibung der unterstützen Seiten, den darauf angebotenen Interaktionsmöglichkeiten und dem
+                Layout, umgesetzt in XHTML, CSS und XForms</para>
+        </sect1>
+        <sect1>
+            <title>Protokoll zwischen Client und Server</title>
+            <para>HTTP-Nachrichten mit URLs und XML-Daten</para>
+        </sect1>
+        <sect1>
+            <title>Server-Komponente</title>
+            <para>Services, umgesetzt mit XQuery und XSLT</para>
+        </sect1>
+    </chapter>
+    <chapter>
+        <title>Reflexion</title>
+        <sect1>
+            <title>Arbeit im Team</title>
+            <para>Text</para>
+        </sect1>
+        <sect1>
+            <title>Thematik CalendarX</title>
+            <para>Text</para>
+        </sect1>
+        <sect1>
+            <title>Organisation und Betreuung im Praktikum</title>
+            <para>Text</para>
+        </sect1>
+    </chapter>
+</book>
