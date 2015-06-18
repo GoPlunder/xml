@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="tagessicht.xsl"?>
+<events>
+    <event>
+        <datum>2015-05-04</datum>
+        <startZeit>12:15:00</startZeit>
+        <startZeitInMin>735</startZeitInMin>
+        <endZeit>13:45:00</endZeit>
+        <endZeitInMin>825</endZeitInMin>
+        <beschreibung>VorlEP</beschreibung>
+        <kategorie>work</kategorie>
+    </event>
+    <event>
+        <datum>2015-05-07</datum>
+        <startZeit>10:15:00</startZeit>
+        <startZeitInMin>615</startZeitInMin>
+        <endZeit>12:00:00</endZeit>
+        <endZeitInMin>720</endZeitInMin>
+        <beschreibung>XML-Praktikum</beschreibung>
+        <kategorie>work</kategorie>
+    </event>
+    <event>
+        <datum>2015-05-07</datum>
+        <startZeit>12:30:00</startZeit>
+        <startZeitInMin>750</startZeitInMin>
+        <endZeit>16:30:00</endZeit>
+        <endZeitInMin>990</endZeitInMin>
+        <beschreibung>Team Meeting XML-Praktikum</beschreibung>
+        <kategorie>work</kategorie>
+    </event>
+    <event>
+        <datum>2015-05-08</datum>
+        <startZeit>20:00:00</startZeit>
+        <startZeitInMin>1200</startZeitInMin>
+        <endZeit>22:00:00</endZeit>
+        <endZeitInMin>1320</endZeitInMin>
+        <beschreibung>OChrHFP</beschreibung>
+        <kategorie>music</kategorie>
+    </event>
+</events>

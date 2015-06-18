@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.0//EN" "http://www.w3.org/TR/2001/REC-SVG-20010904/DTD/svg10.dtd">
+<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%">
+    
+    <title>Monatssicht</title>
+    
+    <!-- Jede zweite Kalenderwoche farbig hinterlegen -->
+    <rect x='25' y='40' width='710' height='20' fill='gainsboro'/>
+    <rect x='25' y='76' width='710' height='20' fill='gainsboro'/>
+    <rect x='25' y='112' width='710' height='20' fill='gainsboro'/>
+    
+    <!-- Wochentage -->
+    <text x='30' y='30' font-size='18px' font-weight='bold' fill='crimson' text-anchor='middle'>
+        <tspan x='100'>Montag</tspan>
+        <tspan x='200'>Dienstag</tspan>
+        <tspan x='300'>Mittwoch</tspan>
+        <tspan x='400'>Donnerstag</tspan>
+        <tspan x='500'>Freitag</tspan>
+        <tspan x='600'>Samstag</tspan>
+        <tspan x='700'>Sonntag</tspan>
+    </text>
+    
+    <!-- Kalenderwoche 1 -->
+    <text x='25' y='30' font-size='18px' text-anchor='middle'>
+        <tspan x='25' dy='1.5em' font-weight='bold' fill='crimson' text-anchor='start'>KW1</tspan>
+        <tspan x='100'>1</tspan>
+        <tspan x='200'>2</tspan>
+        <tspan x='300'>3</tspan>
+        <tspan x='400'>4</tspan>
+        <tspan x='500'>5</tspan>
+        <tspan x='600'>6</tspan>
+        <tspan x='700'>7</tspan>
+    </text>
+    
+    <!-- Kalenderwoche 2 -->
+    <text x='25' y='30' font-size='18px' text-anchor='middle'>
+        <tspan x='25' dy='2.5em' font-weight='bold' fill='crimson' text-anchor='start'>KW2</tspan>
+        <tspan x='100'>8</tspan>
+        <tspan x='200'>9</tspan>
+        <tspan x='300'>10</tspan>
+        <tspan x='400'>11</tspan>
+        <tspan x='500'>12</tspan>
+        <tspan x='600'>13</tspan>
+        <tspan x='700'>14</tspan>
+    </text>
+    
+    <!-- Kalenderwoche 3 -->
+    <text x='25' y='30' font-size='18px' text-anchor='middle'>
+        <tspan x='25' dy='3.5em' font-weight='bold' fill='crimson' text-anchor='start'>KW3</tspan>
+        <tspan x='100'>15</tspan>
+        <tspan x='200'>16</tspan>
+        <tspan x='300'>17</tspan>
+        <tspan x='400'>18</tspan>
+        <tspan x='500'>19</tspan>
+        <tspan x='600'>20</tspan>
+        <tspan x='700'>21</tspan>
+    </text>
+    
+    <!-- Kalenderwoche 4 -->
+    <text x='25' y='30' font-size='18px' text-anchor='middle'>
+        <tspan x='25' dy='4.5em' font-weight='bold' fill='crimson' text-anchor='start'>KW4</tspan>
+        <tspan x='100'>22</tspan>
+        <tspan x='200'>23</tspan>
+        <tspan x='300'>24</tspan>
+        <tspan x='400'>25</tspan>
+        <tspan x='500'>26</tspan>
+        <tspan x='600'>27</tspan>
+        <tspan x='700'>28</tspan>
+    </text>
+    
+    <!-- Kalenderwoche 5 -->
+    <text x='25' y='30' font-size='18px' text-anchor='middle'>
+        <tspan x='25' dy='5.5em' font-weight='bold' fill='crimson' text-anchor='start'>KW5</tspan>
+        <tspan x='100'>30</tspan>
+        <tspan x='200'>31</tspan>
+        <tspan x='300'>1</tspan>
+        <tspan x='400'>2</tspan>
+        <tspan x='500'>3</tspan>
+        <tspan x='600'>4</tspan>
+        <tspan x='700'>5</tspan>
+    </text>
+    
+    
+</svg>

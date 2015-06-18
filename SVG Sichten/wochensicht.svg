@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.0//EN" 
+              "http://www.w3.org/TR/2001/REC-SVG-20010904/DTD/svg10.dtd">
+
+<svg width="1300" height="1200" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+	<!-- Im defs-Container werden die Objekte definiert -->
+	<defs>
+		<!-- Linie horizontal-->
+		<line x1="50" y1="50" x2="1150" y2="50" stroke-width="2" stroke="grey" id="li"/>
+		<!-- Linie vertikal-->
+		<line x1="100" y1="50" x2="100" y2="1050" stroke-width="2" stroke="grey" id="li2"></line>
+	</defs>
+	
+	<!-- Schreibe die Kalenderwoche in die obere Mitte der Seite -->
+	<text x="600" y="25" text-anchor="middle" font-size="20" fill="red">KW 20, 11.05.2015-17.05.2015</text>
+	
+	<!-- Zeichne die oben definierte Linie 25 mal mit Abstand 40 -->
+	<use xlink:href="#li" y="40"/>
+	<use xlink:href="#li" y="80"/>
+	<use xlink:href="#li" y="120"/>
+	<use xlink:href="#li" y="160"/>
+	<use xlink:href="#li" y="200"/>
+	<use xlink:href="#li" y="240"/>
+	<use xlink:href="#li" y="280"/>
+	<use xlink:href="#li" y="320"/>
+	<use xlink:href="#li" y="360"/>
+	<use xlink:href="#li" y="400"/>
+	<use xlink:href="#li" y="440"/>
+	<use xlink:href="#li" y="480"/>
+	<use xlink:href="#li" y="520"/>
+	<use xlink:href="#li" y="560"/>
+	<use xlink:href="#li" y="600"/>
+	<use xlink:href="#li" y="640"/>
+	<use xlink:href="#li" y="680"/>
+	<use xlink:href="#li" y="720"/>
+	<use xlink:href="#li" y="760"/>
+	<use xlink:href="#li" y="800"/>
+	<use xlink:href="#li" y="840"/>
+	<use xlink:href="#li" y="880"/>
+	<use xlink:href="#li" y="920"/>
+	<use xlink:href="#li" y="960"/>
+	<use xlink:href="#li" y="1000"/>
+	
+	<!-- Schreibe bestimmte Uhrzeit auf jede Linie -->
+	<text x="55" y="120">00:00</text>
+	<text x="55" y="160">01:00</text>
+	<text x="55" y="200">02:00</text>
+	<text x="55" y="240">03:00</text>
+	<text x="55" y="280">04:00</text>
+	<text x="55" y="320">05:00</text>
+	<text x="55" y="360">06:00</text>
+	<text x="55" y="400">07:00</text>
+	<text x="55" y="440">08:00</text>
+	<text x="55" y="480">09:00</text>
+	<text x="55" y="520">10:00</text>
+	<text x="55" y="560">11:00</text>
+	<text x="55" y="600">12:00</text>
+	<text x="55" y="640">13:00</text>
+	<text x="55" y="680">14:00</text>
+	<text x="55" y="720">15:00</text>
+	<text x="55" y="760">16:00</text>
+	<text x="55" y="800">17:00</text>
+	<text x="55" y="840">18:00</text>
+	<text x="55" y="880">19:00</text>
+	<text x="55" y="920">20:00</text>
+	<text x="55" y="960">21:00</text>
+	<text x="55" y="1000">22:00</text>
+	
+<text x="55" y="1040">23:00</text>
+	
+	<!-- Zeichne vertikale Linien neben die Uhrzeiten und Wochentage -->
+	<use xlink:href="#li2"></use>
+	<use xlink:href="#li2" x="150"></use>
+	<use xlink:href="#li2" x="300"></use>
+	<use xlink:href="#li2" x="450"></use>
+	<use xlink:href="#li2" x="600"></use>
+	<use xlink:href="#li2" x="750"></use>
+	<use xlink:href="#li2" x="900"></use>
+	<use xlink:href="#li2" x="1050"></use>
+	
+	<!-- Schreibe die Wochentage zwischen die vertikalen Linien -->
+	<text x="175" y="75" text-anchor="middle">Montag</text>
+	<text x="315" y="75" text-anchor="middle">Dienstag</text>
+	<text x="475" y="75" text-anchor="middle">Mittwoch</text>
+	<text x="615" y="75" text-anchor="middle">Donnerstag</text>
+	<text x="775" y="75" text-anchor="middle">Freitag</text>
+	<text x="915" y="75" text-anchor="middle">Samstag</text>
+	<text x="1075" y="75" text-anchor="middle">Sonntag</text>
+	
+</svg>
