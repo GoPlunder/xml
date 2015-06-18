@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
     xmlns:xs="http://www.w3.org/2001/XMLSchema" exclude-result-prefixes="xs" version="2.0">
-    <xsl:template match="/">
+    <xsl:template name="wochensicht">
         <svg width="1200" height="1000" xmlns="http://www.w3.org/2000/svg"
             xmlns:xlink="http://www.w3.org/1999/xlink">
             <!-- Im defs-Container werden die Objekte definiert -->
@@ -69,7 +69,13 @@
 
             <!-- Zeichne vertikale Linie neben die Uhrzeiten -->
             <use xlink:href="#li2"/>
-
+        </svg>
+    </xsl:template>
+    <xsl:template match="/">
+        <svg>
+            <!-- Hier wird das oben definierte Template "wochensicht" aufgerufen -->
+            <xsl:call-template name="wochensicht"/>
+            
             <!-- Globale Variablen -->
             <xsl:variable name="aktuellesDatum" as="xs:date"
                 select="document('aktuellesDatum.xml')/datum"/>
@@ -86,15 +92,16 @@
                 <xsl:variable name="startRechteck" select="50 + (startZeitInMin div 2)"/>
                 <xsl:variable name="endeRechteck" select="50 + (endZeitInMin div 2)"/>
 
-
-                <rect x="105" y="{$startRechteck}" width="1045"
+                <!-- Zeichne ein Rechteck für die Zeitspanne, in der ein Termin stattfindet -->
+                <rect x="105" y="{$startRechteck}" width="1040"
                     height="{($endeRechteck)-$startRechteck}" fill="gainsboro"/>
+                <!-- Schreibe Startzeit, Endzeit und die Beschreibung in das Rechteck -->
                 <text x="115" y="{$startRechteck +15}">
                     <xsl:value-of select="startZeit"/> - <xsl:value-of select="endZeit"/> :
                         <xsl:value-of select="beschreibung"/>
                 </text>
             </xsl:for-each>
-
         </svg>
+        
     </xsl:template>
 </xsl:stylesheet>
