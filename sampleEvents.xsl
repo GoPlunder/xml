@@ -1,11 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xsl:stylesheet version="2.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
-    xmlns:xs="http://www.w3.org/2001/XMLSchema" exclude-result-prefixes="xs">
+    xmlns:xs="http://www.w3.org/2001/XMLSchema" exclude-result-prefixes="xs" xmlns:functx="http://www.functx.com">
     <!-- erzeugt eine Zwischendatei mit den für die Sicht relevanten Elementen, sortiert nach Datum und Anfangszeit -->
 
-
+    <xsl:include href="tagessicht.xsl"/>
+    <xsl:include href="functX.xsl"/>
+    
+    
     <xsl:template match="/">
-        
             <html>
                 <body>                  
                     <xsl:result-document href="events_sortiert.xml" method="xml">
@@ -17,6 +19,12 @@
                             <datum>
                                 <xsl:value-of select="@date"/>
                             </datum>
+                            <datumWochenTag>
+                                <xsl:value-of select="functx:day-of-week(@date)"/>
+                            </datumWochenTag>
+                            <datumJahresTag>
+                                <xsl:value-of select="functx:day-in-year(@date)"/>
+                            </datumJahresTag>
                             <startZeit>
                                 <xsl:value-of select="@startTime"/>
                             </startZeit>

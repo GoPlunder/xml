@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<?xml-stylesheet type="text/xsl" href="tagessicht.xsl"?>
-<events>
+<?xml-stylesheet type="text/xsl" href="wochensicht.xsl"?>
+<events xmlns:functx="http://www.functx.com">
     <event>
         <datum>2015-05-04</datum>
+        <datumWochenTag>1</datumWochenTag>
+        <datumJahresTag>124</datumJahresTag>
         <startZeit>12:15:00</startZeit>
         <startZeitInMin>735</startZeitInMin>
         <endZeit>13:45:00</endZeit>
@@ -12,6 +14,8 @@
     </event>
     <event>
         <datum>2015-05-07</datum>
+        <datumWochenTag>4</datumWochenTag>
+        <datumJahresTag>127</datumJahresTag>
         <startZeit>10:15:00</startZeit>
         <startZeitInMin>615</startZeitInMin>
         <endZeit>12:00:00</endZeit>
@@ -21,6 +25,8 @@
     </event>
     <event>
         <datum>2015-05-07</datum>
+        <datumWochenTag>4</datumWochenTag>
+        <datumJahresTag>127</datumJahresTag>
         <startZeit>12:30:00</startZeit>
         <startZeitInMin>750</startZeitInMin>
         <endZeit>16:30:00</endZeit>
@@ -30,11 +36,24 @@
     </event>
     <event>
         <datum>2015-05-08</datum>
+        <datumWochenTag>5</datumWochenTag>
+        <datumJahresTag>128</datumJahresTag>
         <startZeit>20:00:00</startZeit>
         <startZeitInMin>1200</startZeitInMin>
         <endZeit>22:00:00</endZeit>
         <endZeitInMin>1320</endZeitInMin>
         <beschreibung>OChrHFP</beschreibung>
+        <kategorie>music</kategorie>
+    </event>
+    <event>
+        <datum>2015-05-14</datum>
+        <datumWochenTag>4</datumWochenTag>
+        <datumJahresTag>134</datumJahresTag>
+        <startZeit>19:00:00</startZeit>
+        <startZeitInMin>1140</startZeitInMin>
+        <endZeit>21:00:00</endZeit>
+        <endZeitInMin>1260</endZeitInMin>
+        <beschreibung>Grillen an der Isar</beschreibung>
         <kategorie>music</kategorie>
     </event>
 </events>

@@ -30,4 +30,11 @@
         </attendees>
         <location description="01.07.023"/>
     </event>
+    <event description="Grillen an der Isar" categories="music" date="2015-05-14"
+        startTime="19:00:00" endTime="21:00:00" note="">
+        <attendees>
+            <attendee description="Anne Brüggemann-Klein"/>
+        </attendees>
+        <location description="01.07.023"/>
+    </event>
 </events>

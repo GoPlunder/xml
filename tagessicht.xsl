@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
     xmlns:xs="http://www.w3.org/2001/XMLSchema" exclude-result-prefixes="xs" version="2.0">
-    <xsl:template name="wochensicht">
-        <svg width="1200" height="1000" xmlns="http://www.w3.org/2000/svg"
+    <xsl:template name="tagessicht">
+        <svg width="1200" height="1100" xmlns="http://www.w3.org/2000/svg"
             xmlns:xlink="http://www.w3.org/1999/xlink">
             <!-- Im defs-Container werden die Objekte definiert -->
             <defs>
                 <!-- Linie horizontal-->
                 <line x1="50" y1="50" x2="1150" y2="50" stroke-width="2" stroke="grey" id="li"/>
                 <!-- Linie vertikal-->
-                <line x1="100" y1="50" x2="100" y2="770" stroke-width="2" stroke="grey" id="li2"/>
+                <line x1="100" y1="50" x2="100" y2="800" stroke-width="2" stroke="grey" id="li2"/>
             </defs>
 
             <!-- Zeichne die oben definierte Linie 25 mal mit Abstand 30 -->
@@ -41,30 +41,30 @@
 
             <!-- Schreibe bestimmte Uhrzeit auf jede Linie -->
             <g id="uhrzeit">
-                <text x="55" y="70">00:00</text>
-                <text x="55" y="100">01:00</text>
-                <text x="55" y="130">02:00</text>
-                <text x="55" y="160">03:00</text>
-                <text x="55" y="190">04:00</text>
-                <text x="55" y="220">05:00</text>
-                <text x="55" y="250">06:00</text>
-                <text x="55" y="280">07:00</text>
-                <text x="55" y="310">08:00</text>
-                <text x="55" y="340">09:00</text>
-                <text x="55" y="370">10:00</text>
-                <text x="55" y="400">11:00</text>
-                <text x="55" y="430">12:00</text>
-                <text x="55" y="460">13:00</text>
-                <text x="55" y="490">14:00</text>
-                <text x="55" y="520">15:00</text>
-                <text x="55" y="550">16:00</text>
-                <text x="55" y="580">17:00</text>
-                <text x="55" y="610">18:00</text>
-                <text x="55" y="640">19:00</text>
-                <text x="55" y="670">20:00</text>
-                <text x="55" y="700">21:00</text>
-                <text x="55" y="730">22:00</text>
-                <text x="55" y="760">23:00</text>
+                <text x="55" y="100">00:00</text>
+                <text x="55" y="130">01:00</text>
+                <text x="55" y="160">02:00</text>
+                <text x="55" y="190">03:00</text>
+                <text x="55" y="220">04:00</text>
+                <text x="55" y="250">05:00</text>
+                <text x="55" y="280">06:00</text>
+                <text x="55" y="310">07:00</text>
+                <text x="55" y="340">08:00</text>
+                <text x="55" y="370">09:00</text>
+                <text x="55" y="400">10:00</text>
+                <text x="55" y="430">11:00</text>
+                <text x="55" y="460">12:00</text>
+                <text x="55" y="490">13:00</text>
+                <text x="55" y="520">14:00</text>
+                <text x="55" y="550">15:00</text>
+                <text x="55" y="580">16:00</text>
+                <text x="55" y="610">17:00</text>
+                <text x="55" y="640">18:00</text>
+                <text x="55" y="670">19:00</text>
+                <text x="55" y="700">20:00</text>
+                <text x="55" y="730">21:00</text>
+                <text x="55" y="760">22:00</text>
+                <text x="55" y="790">23:00</text>
             </g>
 
             <!-- Zeichne vertikale Linie neben die Uhrzeiten -->
@@ -74,7 +74,7 @@
     <xsl:template match="/">
         <svg>
             <!-- Hier wird das oben definierte Template "wochensicht" aufgerufen -->
-            <xsl:call-template name="wochensicht"/>
+            <xsl:call-template name="tagessicht"/>
             
             <!-- Globale Variablen -->
             <xsl:variable name="aktuellesDatum" as="xs:date"
@@ -89,8 +89,8 @@
             <xsl:for-each
                 select="document('events_sortiert.xml')/events/event[datum = $aktuellesDatum]">
 
-                <xsl:variable name="startRechteck" select="50 + (startZeitInMin div 2)"/>
-                <xsl:variable name="endeRechteck" select="50 + (endZeitInMin div 2)"/>
+                <xsl:variable name="startRechteck" select="80 + (startZeitInMin div 2)"/>
+                <xsl:variable name="endeRechteck" select="80 + (endZeitInMin div 2)"/>
 
                 <!-- Zeichne ein Rechteck für die Zeitspanne, in der ein Termin stattfindet -->
                 <rect x="105" y="{$startRechteck}" width="1040"
