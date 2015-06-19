@@ -1,14 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
-    xmlns:xs="http://www.w3.org/2001/XMLSchema" exclude-result-prefixes="xs" version="2.0">
+    xmlns:xs="http://www.w3.org/2001/XMLSchema" exclude-result-prefixes="xs" version="2.0"
+    xmlns:functx="http://www.functx.com">
 
     <!-- Beinhaltet das unten aufgerufene Template tagessicht -->
     <xsl:include href="tagessicht.xsl"/>
+    <xsl:include href="functX.xsl"/>
 
     <!-- Globale Variablen -->
     <xsl:variable name="aktuellesDatum" as="xs:date" select="document('aktuellesDatum.xml')/datum"/>
-    <xsl:variable name="datumWochenTag" select="document('events_sortiert.xml')/events/event[datum = $aktuellesDatum]/datumWochenTag"/>
-    <xsl:variable name="datumJahresTag" select="document('events_sortiert.xml')/events/event[datum = $aktuellesDatum]/datumJahresTag"/>
+    <xsl:variable name="datumWochenTag"
+        select="functx:day-of-week($aktuellesDatum)"/>
+    <xsl:variable name="datumJahresTag" select="functx:day-in-year($aktuellesDatum)"/>
+
+    <xsl:param name="counter">1</xsl:param>
+    <xsl:param name="nummerAktuellerTag"/>
+    <xsl:param name="betrachtetesDatum"/>
+    <xsl:param name="zaehler"/>
 
     <xsl:template name="wochentage">
         <svg width="1300" height="1000" xmlns="http://www.w3.org/2000/svg"
@@ -36,6 +44,9 @@
             <!-- Hier werden die Templates aufgerufen -->
             <xsl:call-template name="tagessicht"/>
             <xsl:call-template name="wochentage"/>
+            <xsl:call-template name="fuelleWoche"/>
+            <xsl:call-template name="schreibeWochenTage"/>
+
 
             <!-- Zeichne vertikale Linien neben die Uhrzeiten und Wochentage -->
             <use xlink:href="#li2"/>
@@ -46,34 +57,136 @@
             <use xlink:href="#li2" x="750"/>
             <use xlink:href="#li2" x="900"/>
             <use xlink:href="#li2" x="1050"/>
-            
-            <!-- Rufe die rekursive Funktion auf -->
-            <xsl:call-template name="fuelleWoche"></xsl:call-template>
         </svg>
 
     </xsl:template>
-    
-    <xsl:param name="counter">1</xsl:param>
-   
-    
+
+
+
+    <!-- Falls vorhanden, fülle die Woche mit den entsprechenden Terminen -->
     <xsl:template name="fuelleWoche">
-         <xsl:param name="counter">1</xsl:param>
-         <xsl:for-each select="document('events_sortiert.xml')/events/event[datumJahresTag = $datumJahresTag -$datumWochenTag +$counter]">
-             
-             <xsl:variable name="startRechteck" select="80 + (startZeitInMin div 2)"/>
-             <xsl:variable name="endeRechteck" select="80 + (endZeitInMin div 2)"/>
-             
-             <!-- Zeichne ein Rechteck für die Zeitspanne, in der ein Termin stattfindet -->
-             <rect x="{105+datumWochenTag*150-150}" y="{$startRechteck}" width="140"
-                 height="{($endeRechteck)-$startRechteck}" fill="gainsboro"/>
-             <!-- Schreibe Startzeit, Endzeit und die Beschreibung in das Rechteck -->
-           
+        <xsl:param name="counter">1</xsl:param>
+
+        <xsl:for-each
+            select="document('events_sortiert.xml')/events/event">
+            
+            <xsl:if test="datumJahresTag = ($datumJahresTag - $datumWochenTag + $counter)">
+            <xsl:variable name="startRechteck" select="80 + (startZeitInMin div 2)"/>
+            <xsl:variable name="endeRechteck" select="80 + (endZeitInMin div 2)"/>
+            <xsl:variable name="wochenTagNummer" select="datumWochenTag"/>
+
+
+
+            <!-- Zeichne ein Rechteck für die Zeitspanne, in der ein Termin stattfindet -->
+            <rect x="{105+$wochenTagNummer*150-150}" y="{$startRechteck}" width="140"
+                height="{($endeRechteck)-$startRechteck}" fill="gainsboro"/>
+            <!-- Schreibe Startzeit, Endzeit und die Beschreibung in das Rechteck -->
+            <text x="{105+$wochenTagNummer*150-150 +15}" y="{$startRechteck+15}">
+                <xsl:value-of select="beschreibung"/>
+            </text>
+            <text x="{105+$wochenTagNummer*150-150 +15}" y="{$startRechteck+35}"><xsl:value-of
+                    select="startZeit"/>-<xsl:value-of select="endZeit"/></text>
+            </xsl:if>
+
         </xsl:for-each>
         <xsl:if test="$counter &lt; 8">
             <xsl:call-template name="fuelleWoche">
-                <xsl:with-param name="counter"><xsl:value-of select="$counter+1"/></xsl:with-param>
-            </xsl:call-template>   
+                <xsl:with-param name="counter">
+                    <xsl:value-of select="$counter + 1"/>
+                </xsl:with-param>
+            </xsl:call-template>
         </xsl:if>
+    </xsl:template>
+
+
+
+
+    <!-- Schreibe die Daten über die Wochentage -->
+    <xsl:template name="schreibeWochenTage">
+        <xsl:param name="betrachtetesDatum">
+            <xsl:value-of select="$aktuellesDatum"/>
+        </xsl:param>
+        <xsl:param name="nummerAktuellerTag">
+            <xsl:value-of select="functx:day-of-week($aktuellesDatum)"/>
+        </xsl:param>
+        <xsl:param name="zaehler">0</xsl:param>
+
+        <xsl:choose>
+
+            <xsl:when test="$nummerAktuellerTag = 0 or $zaehler = 7 - $nummerAktuellerTag">
+                <text x="{150*7}" y="50">
+                    <xsl:value-of select="$betrachtetesDatum"/>
+                </text>
+                <xsl:call-template name="schreibeWochenTageVor">
+                    <xsl:with-param name="betrachtetesDatum">
+                        <xsl:value-of select="functx:previous-day($aktuellesDatum)"/>
+                    </xsl:with-param>
+                    <xsl:with-param name="nummerAktuellerTag">
+                        <xsl:value-of select="7"/>
+                    </xsl:with-param>
+                    <xsl:with-param name="zaehler">
+                        <xsl:value-of select="$zaehler + 1"/>
+                    </xsl:with-param>
+                </xsl:call-template>
+            </xsl:when>
+
+            <xsl:when test="$nummerAktuellerTag > 0 and $zaehler &lt; 7 - $nummerAktuellerTag">
+                <text x="{150*functx:day-of-week($betrachtetesDatum)}" y="50">
+                    <xsl:value-of select="$betrachtetesDatum"/>
+                </text>
+                <xsl:call-template name="schreibeWochenTage">
+                    <xsl:with-param name="betrachtetesDatum">
+                        <xsl:value-of select="functx:next-day($betrachtetesDatum)"/>
+                    </xsl:with-param>
+                    <xsl:with-param name="zaehler">
+                        <xsl:value-of select="$zaehler + 1"/>
+                    </xsl:with-param>
+                </xsl:call-template>
+            </xsl:when>
+
+            <xsl:otherwise>
+
+                <xsl:call-template name="schreibeWochenTageVor">
+                    <xsl:with-param name="betrachtetesDatum">
+                        <xsl:value-of select="functx:previous-day($aktuellesDatum)"/>
+                    </xsl:with-param>
+                    <xsl:with-param name="nummerAktuellerTag">
+                        <xsl:value-of select="functx:day-of-week($aktuellesDatum)"/>
+                    </xsl:with-param>
+                    <xsl:with-param name="zaehler">
+                        <xsl:value-of select="$zaehler + 1"/>
+                    </xsl:with-param>
+                </xsl:call-template>
+            </xsl:otherwise>
+        </xsl:choose>
+    </xsl:template>
+
+    <xsl:template name="schreibeWochenTageVor">
+        <xsl:param name="betrachtetesDatum">
+            <xsl:value-of select="$aktuellesDatum"/>
+        </xsl:param>
+        <xsl:param name="nummerAktuellerTag">
+            <xsl:value-of select="functx:day-of-week($aktuellesDatum)"/>
+        </xsl:param>
+        <xsl:param name="zaehler">0</xsl:param>
+
+        <xsl:if
+            test="$nummerAktuellerTag > 0 and $zaehler > 7 - $nummerAktuellerTag and $zaehler &lt; 7">
+            <text x="{150*functx:day-of-week($betrachtetesDatum)}" y="50">
+                <xsl:value-of select="$betrachtetesDatum"/>
+            </text>
+
+            <xsl:call-template name="schreibeWochenTageVor">
+                <xsl:with-param name="betrachtetesDatum">
+                    <xsl:value-of select="functx:previous-day($betrachtetesDatum)"/>
+                </xsl:with-param>
+                <xsl:with-param name="nummerAktuellerTag">7</xsl:with-param>
+                <xsl:with-param name="zaehler">
+                    <xsl:value-of select="$zaehler + 1"/>
+                </xsl:with-param>
+            </xsl:call-template>
+        </xsl:if>
+
     </xsl:template>
 
 </xsl:stylesheet>

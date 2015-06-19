@@ -10,7 +10,8 @@
         <endZeit>13:45:00</endZeit>
         <endZeitInMin>825</endZeitInMin>
         <beschreibung>VorlEP</beschreibung>
-        <kategorie>work</kategorie>
+        <tagZuvor>2015-05-03</tagZuvor>
+        <tagDanach>2015-05-05</tagDanach>
     </event>
     <event>
         <datum>2015-05-07</datum>
@@ -21,7 +22,8 @@
         <endZeit>12:00:00</endZeit>
         <endZeitInMin>720</endZeitInMin>
         <beschreibung>XML-Praktikum</beschreibung>
-        <kategorie>work</kategorie>
+        <tagZuvor>2015-05-06</tagZuvor>
+        <tagDanach>2015-05-08</tagDanach>
     </event>
     <event>
         <datum>2015-05-07</datum>
@@ -31,8 +33,9 @@
         <startZeitInMin>750</startZeitInMin>
         <endZeit>16:30:00</endZeit>
         <endZeitInMin>990</endZeitInMin>
-        <beschreibung>Team Meeting XML-Praktikum</beschreibung>
-        <kategorie>work</kategorie>
+        <beschreibung>Team Meeting</beschreibung>
+        <tagZuvor>2015-05-06</tagZuvor>
+        <tagDanach>2015-05-08</tagDanach>
     </event>
     <event>
         <datum>2015-05-08</datum>
@@ -43,7 +46,20 @@
         <endZeit>22:00:00</endZeit>
         <endZeitInMin>1320</endZeitInMin>
         <beschreibung>OChrHFP</beschreibung>
-        <kategorie>music</kategorie>
+        <tagZuvor>2015-05-07</tagZuvor>
+        <tagDanach>2015-05-09</tagDanach>
+    </event>
+    <event>
+        <datum>2015-05-10</datum>
+        <datumWochenTag>7</datumWochenTag>
+        <datumJahresTag>130</datumJahresTag>
+        <startZeit>14:00:00</startZeit>
+        <startZeitInMin>840</startZeitInMin>
+        <endZeit>16:00:00</endZeit>
+        <endZeitInMin>960</endZeitInMin>
+        <beschreibung>Cafe</beschreibung>
+        <tagZuvor>2015-05-09</tagZuvor>
+        <tagDanach>2015-05-11</tagDanach>
     </event>
     <event>
         <datum>2015-05-14</datum>
@@ -54,6 +70,7 @@
         <endZeit>21:00:00</endZeit>
         <endZeitInMin>1260</endZeitInMin>
         <beschreibung>Grillen an der Isar</beschreibung>
-        <kategorie>music</kategorie>
+        <tagZuvor>2015-05-13</tagZuvor>
+        <tagDanach>2015-05-15</tagDanach>
     </event>
 </events>
