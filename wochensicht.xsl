@@ -3,7 +3,7 @@
     xmlns:xs="http://www.w3.org/2001/XMLSchema" exclude-result-prefixes="xs" version="2.0"
     xmlns:functx="http://www.functx.com">
 
-    <!-- Beinhaltet das unten aufgerufene Template tagessicht -->
+    <!-- Stylesheets -->
     <xsl:include href="tagessicht.xsl"/>
     <xsl:include href="functX.xsl"/>
 
@@ -19,22 +19,33 @@
     <xsl:param name="zaehler"/>
 
 
-
     <xsl:template match="/">
         <svg width="1300" height="1000" xmlns="http://www.w3.org/2000/svg"
+            xmlns:xlink="http://www.w3.org/1999/xlink">            
+
+            <!-- Hier werden die Templates aufgerufen -->
+            <xsl:call-template name="tagessicht"/>
+            <xsl:call-template name="spaltenWochentage"/>
+            <xsl:call-template name="fuelleWoche"/>
+            <xsl:call-template name="schreibeWochenTage"/>
+
+        </svg>
+    </xsl:template>
+
+
+
+    <!-- Schreibe für jeden Wochentag eine Spalte -->
+    <xsl:template name="spaltenWochentage">
+
+        <svg width="1300" height="1000" xmlns="http://www.w3.org/2000/svg"
             xmlns:xlink="http://www.w3.org/1999/xlink">
+            
             <defs>
                 <!-- Linie vertikal-->
                 <line x1="100" y1="50" x2="100" y2="800" stroke-width="2" stroke="grey" id="li2"/>
             </defs>
-
-            <!-- Hier werden die Templates aufgerufen -->
-            <xsl:call-template name="tagessicht"/>
-            <xsl:call-template name="wochentage"/>
-            <xsl:call-template name="fuelleWoche"/>
-            <xsl:call-template name="schreibeWochenTage"/>
-
-
+            
+            
             <!-- Zeichne vertikale Linien neben die Uhrzeiten und Wochentage -->
             <use xlink:href="#li2"/>
             <use xlink:href="#li2" x="150"/>
@@ -44,15 +55,7 @@
             <use xlink:href="#li2" x="750"/>
             <use xlink:href="#li2" x="900"/>
             <use xlink:href="#li2" x="1050"/>
-        </svg>
-    </xsl:template>
-
-
-
-    <!-- Schreibe die Wochentage zwischen die vertikalen Linien -->
-    <xsl:template name="wochentage">
-        <svg width="1300" height="1000" xmlns="http://www.w3.org/2000/svg"
-            xmlns:xlink="http://www.w3.org/1999/xlink">
+            
             <text x="175" y="75" text-anchor="middle">Montag</text>
             <text x="315" y="75" text-anchor="middle">Dienstag</text>
             <text x="475" y="75" text-anchor="middle">Mittwoch</text>
