@@ -21,7 +21,7 @@
 
     <xsl:template match="/">
         <svg width="1300" height="1000" xmlns="http://www.w3.org/2000/svg"
-            xmlns:xlink="http://www.w3.org/1999/xlink">            
+            xmlns:xlink="http://www.w3.org/1999/xlink">
 
             <!-- Hier werden die Templates aufgerufen -->
             <xsl:call-template name="tagessicht"/>
@@ -29,9 +29,10 @@
             <xsl:call-template name="fuelleWoche"/>
             <xsl:call-template name="schreibeWochenTage"/>
 
+            <!--xsl:call-template name="wochenTage"> </xsl:call-template-->
+
         </svg>
     </xsl:template>
-
 
 
     <!-- Schreibe für jeden Wochentag eine Spalte -->
@@ -39,13 +40,13 @@
 
         <svg width="1300" height="1000" xmlns="http://www.w3.org/2000/svg"
             xmlns:xlink="http://www.w3.org/1999/xlink">
-            
+
             <defs>
                 <!-- Linie vertikal-->
                 <line x1="100" y1="50" x2="100" y2="800" stroke-width="2" stroke="grey" id="li2"/>
             </defs>
-            
-            
+
+
             <!-- Zeichne vertikale Linien neben die Uhrzeiten und Wochentage -->
             <use xlink:href="#li2"/>
             <use xlink:href="#li2" x="150"/>
@@ -55,7 +56,7 @@
             <use xlink:href="#li2" x="750"/>
             <use xlink:href="#li2" x="900"/>
             <use xlink:href="#li2" x="1050"/>
-            
+
             <text x="175" y="75" text-anchor="middle">Montag</text>
             <text x="315" y="75" text-anchor="middle">Dienstag</text>
             <text x="475" y="75" text-anchor="middle">Mittwoch</text>
@@ -113,6 +114,8 @@
         </xsl:if>
     </xsl:template>
 
+    <xsl:param name="yWert"/>
+
     <!-- Schreibe das Datum über jeden Wochentag -->
     <xsl:template name="schreibeWochenTage">
         <xsl:param name="betrachtetesDatum">
@@ -122,6 +125,7 @@
             <xsl:value-of select="functx:day-of-week($aktuellesDatum)"/>
         </xsl:param>
         <xsl:param name="zaehler">0</xsl:param>
+        <xsl:param name="yWert">50</xsl:param>
 
         <xsl:choose>
 
