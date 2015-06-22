@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<?xml-stylesheet type="text/xsl" href="monatssicht.xsl"?>
+<?xml-stylesheet type="text/xsl" href="tagessicht.xsl"?>
 <events xmlns:functx="http://www.functx.com">
     <event>
         <datum>2015-05-04</datum>
