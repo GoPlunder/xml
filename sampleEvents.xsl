@@ -32,7 +32,7 @@
                                     <xsl:value-of select="functx:day-in-year(@date)"/>
                                 </datumJahresTag>
                                 <startZeit>
-                                    <xsl:value-of select="@startTime"/>
+                                    <xsl:value-of select="format-time(@startTime, '[H01]:[m01]')"/>
                                 </startZeit>
                                 <startZeitInMin>
                                     <xsl:value-of
@@ -40,7 +40,7 @@
                                     />
                                 </startZeitInMin>
                                 <endZeit>
-                                    <xsl:value-of select="@endTime"/>
+                                    <xsl:value-of select="format-time(@endTime, '[H01]:[m01]')"/>
                                 </endZeit>
                                 <endZeitInMin>
                                     <xsl:value-of

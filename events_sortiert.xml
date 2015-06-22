@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="tagessicht.xsl"?>
 <events xmlns:functx="http://www.functx.com">
     <event>
         <datum>2015-05-04</datum>
         <datumWochenTag>1</datumWochenTag>
         <datumJahresTag>124</datumJahresTag>
-        <startZeit>12:15:00</startZeit>
+        <startZeit>12:15</startZeit>
         <startZeitInMin>735</startZeitInMin>
-        <endZeit>13:45:00</endZeit>
+        <endZeit>13:45</endZeit>
         <endZeitInMin>825</endZeitInMin>
         <beschreibung>VorlEP</beschreibung>
         <tagZuvor>2015-05-03</tagZuvor>
@@ -16,9 +17,9 @@
         <datum>2015-05-07</datum>
         <datumWochenTag>4</datumWochenTag>
         <datumJahresTag>127</datumJahresTag>
-        <startZeit>10:15:00</startZeit>
+        <startZeit>10:15</startZeit>
         <startZeitInMin>615</startZeitInMin>
-        <endZeit>12:00:00</endZeit>
+        <endZeit>12:00</endZeit>
         <endZeitInMin>720</endZeitInMin>
         <beschreibung>XML-Praktikum</beschreibung>
         <tagZuvor>2015-05-06</tagZuvor>
@@ -28,9 +29,9 @@
         <datum>2015-05-07</datum>
         <datumWochenTag>4</datumWochenTag>
         <datumJahresTag>127</datumJahresTag>
-        <startZeit>12:30:00</startZeit>
+        <startZeit>12:30</startZeit>
         <startZeitInMin>750</startZeitInMin>
-        <endZeit>16:30:00</endZeit>
+        <endZeit>16:30</endZeit>
         <endZeitInMin>990</endZeitInMin>
         <beschreibung>Team Meeting</beschreibung>
         <tagZuvor>2015-05-06</tagZuvor>
@@ -40,9 +41,9 @@
         <datum>2015-05-08</datum>
         <datumWochenTag>5</datumWochenTag>
         <datumJahresTag>128</datumJahresTag>
-        <startZeit>20:00:00</startZeit>
+        <startZeit>20:00</startZeit>
         <startZeitInMin>1200</startZeitInMin>
-        <endZeit>22:00:00</endZeit>
+        <endZeit>22:00</endZeit>
         <endZeitInMin>1320</endZeitInMin>
         <beschreibung>OChrHFP</beschreibung>
         <tagZuvor>2015-05-07</tagZuvor>
@@ -52,9 +53,9 @@
         <datum>2015-05-10</datum>
         <datumWochenTag>7</datumWochenTag>
         <datumJahresTag>130</datumJahresTag>
-        <startZeit>14:00:00</startZeit>
+        <startZeit>14:00</startZeit>
         <startZeitInMin>840</startZeitInMin>
-        <endZeit>16:00:00</endZeit>
+        <endZeit>16:00</endZeit>
         <endZeitInMin>960</endZeitInMin>
         <beschreibung>Cafe</beschreibung>
         <tagZuvor>2015-05-09</tagZuvor>
@@ -64,9 +65,9 @@
         <datum>2015-05-14</datum>
         <datumWochenTag>4</datumWochenTag>
         <datumJahresTag>134</datumJahresTag>
-        <startZeit>19:00:00</startZeit>
+        <startZeit>19:00</startZeit>
         <startZeitInMin>1140</startZeitInMin>
-        <endZeit>21:00:00</endZeit>
+        <endZeit>21:00</endZeit>
         <endZeitInMin>1260</endZeitInMin>
         <beschreibung>Grillen an der Isar</beschreibung>
         <tagZuvor>2015-05-13</tagZuvor>
