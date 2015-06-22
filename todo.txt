@@ -1,8 +1,12 @@
 TODO:
-- Docbook Vorlage erstellen -> THEA
-- Tutorials durcharbeiten
-    - XPATH
-    - XSLT
-    - XQUERY
-    - XSD/ XML Schema (-> Ersatz für DTD?)
-    - Namensräume und Kodierungsformen in XML
+- Doku schreiben:
+	- Momentaner Stand (T)
+	- Pattern erklären (B)
+	- SuperEvent erklären (B)
+- Zeitangabe ohne Sekunden (B)
+- Monatssicht MIT Events (T)
+- Funktionen von CalendarX (extra Datei für die bereits implementierten XQuery Aufrufe)
+- Patterns 
+- Externe CSS Dateien (sicherstellen, dass es auch in Chrome geht) (B)
+- Kalendarischen auslesen (T)
+- eXist Account anlegen (T + B)
