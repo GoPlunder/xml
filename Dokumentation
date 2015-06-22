@@ -32,7 +32,11 @@
         </sect1>
         <sect1>
             <title>SVG: Umsetzung der Tages-, Wochen und Monatssicht</title>
-            <para></para>
+            <para>Die Uhrzeit wird durch xs:time dargestellt. Die voreingestellte Darstellung eines
+                xs:time ist Stunden:Minuten:Sekunden (hh:mm:ss). Dank der Formatierungsfunktion
+                format-time() in XSLT 2.0 kann man xs:time Werte hernehmen und dann das Format
+                dieser ändern. Somit können wir die Sekunden in den Sichten weglassen und erhalten
+                stattdessen die Darstellung Stunden:Minuten (hh:mm).</para>
         </sect1>
         <sect1>
             <title>Benutzeroberfläche</title>

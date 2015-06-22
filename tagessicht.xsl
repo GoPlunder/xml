@@ -6,7 +6,7 @@
     
 
     <xsl:template match="/">
-        <svg>
+        <svg  height="200%" width="100%">
             <!-- Hier wird das oben definierte Template "tagessicht" aufgerufen -->
             <xsl:call-template name="tagessicht"/>
             
