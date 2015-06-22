@@ -18,8 +18,21 @@
             <!-- Hier werden die Templates aufgerufen -->
             <xsl:call-template name="spaltenWochentage"/>
             <xsl:call-template name="zeilenMonat"/>
-            <xsl:call-template name="schreibeKW"/>
             <xsl:call-template name="monatsTage"/>
+            <xsl:call-template name="berechneKW">
+                <xsl:with-param name="nrErsterTagWoche">
+                    <xsl:value-of
+                        select="functx:day-of-week(functx:first-day-of-year($aktuellesDatum))"/>
+                </xsl:with-param>
+                <xsl:with-param name="nrBetrachteterTagWoche">
+                    <xsl:value-of
+                        select="functx:day-of-week(functx:first-day-of-month($aktuellesDatum))"/>
+                </xsl:with-param>
+                <xsl:with-param name="nrBetrachteterTagJahr">
+                    <xsl:value-of
+                        select="functx:day-in-year(functx:first-day-of-month($aktuellesDatum))"/>
+                </xsl:with-param>
+            </xsl:call-template>
 
         </svg>
     </xsl:template>
@@ -47,32 +60,6 @@
         </svg>
 
     </xsl:template>
-
-
-
-    <xsl:template name="schreibeKW">
-        <svg width="1300" height="1000" xmlns="http://www.w3.org/2000/svg"
-            xmlns:xlink="http://www.w3.org/1999/xlink">
-
-            <!-- Schreibe bestimmte KW auf jede Linie -->
-            <text x="55" y="100">KW _</text>
-            <text x="55" y="210">KW _</text>
-            <text x="55" y="320">KW _</text>
-            <text x="55" y="430">KW _</text>
-            <text x="55" y="540">KW _</text>
-            <text x="55" y="650">KW _</text>
-
-
-            <text x="250" y="300">
-                <xsl:value-of
-                    select="functx:first-day-of-month($aktuellesDatum) + functx:dayTimeDuration(1, 0, 0, 0)"
-                />
-            </text>
-
-        </svg>
-
-    </xsl:template>
-
 
     <!-- Füllt die Tage eines Monats mit den entsprechenden Daten -->
     <xsl:template name="monatsTage">
@@ -120,6 +107,72 @@
 
     </xsl:template>
 
+    <xsl:param name="nrBetrachteterTagJahr">
+        <xsl:value-of select="functx:day-in-year(functx:first-day-of-month($aktuellesDatum))"/>
+    </xsl:param>
+    <xsl:param name="nrBetrachteterTagWoche">
+        <xsl:value-of select="functx:day-of-week(functx:first-day-of-month($aktuellesDatum))"/>
+    </xsl:param>
+    <xsl:param name="nrErsterTagWoche">
+        <xsl:value-of select="functx:day-of-week(functx:first-day-of-year($aktuellesDatum))"/>
+    </xsl:param>
 
+    <xsl:template name="berechneKW">
+        <xsl:param name="nrBetrachteterTagJahr">
+            <xsl:value-of select="functx:day-in-year(functx:first-day-of-month($aktuellesDatum))"/>
+        </xsl:param>
+        <xsl:param name="nrBetrachteterTagWoche">
+            <xsl:value-of select="functx:day-of-week(functx:first-day-of-month($aktuellesDatum))"/>
+        </xsl:param>
+        <xsl:param name="nrErsterTagWoche">
+            <xsl:value-of select="functx:day-of-week(functx:first-day-of-year($aktuellesDatum))"/>
+        </xsl:param>
+        
+        <xsl:if test="$nrBetrachteterTagWoche=0 and $nrErsterTagWoche>0">
+            <xsl:call-template name="berechneKW">
+                <xsl:with-param name="nrBetrachteterTagWoche">7</xsl:with-param>
+            </xsl:call-template>
+        </xsl:if>
+        <xsl:if test="$nrErsterTagWoche=0 and $nrBetrachteterTagWoche>0">
+            <xsl:call-template name="berechneKW">
+                <xsl:with-param name="nrErsterTagWoche">7</xsl:with-param>
+            </xsl:call-template>
+        </xsl:if>
+        <xsl:if test="$nrErsterTagWoche=0 and $nrBetrachteterTagWoche=0">
+            <xsl:call-template name="berechneKW">
+                <xsl:with-param name="nrErsterTagWoche">7</xsl:with-param>
+                <xsl:with-param name="nrBetrachteterTagWoche">7</xsl:with-param>
+            </xsl:call-template>
+        </xsl:if>
+
+            <xsl:if test="$nrBetrachteterTagWoche > 0 and $nrErsterTagWoche > 0">
+                <xsl:variable name="kalenderWoche">
+                    <xsl:value-of
+                        select="floor(($nrBetrachteterTagJahr + 1 + (7 - $nrBetrachteterTagWoche) - (7 - $nrErsterTagWoche)) div 7) + 1"
+                    />
+                </xsl:variable>
+
+                <text x="55" y="100">
+                    <xsl:value-of select="$kalenderWoche"/>
+                </text>
+                <text x="55" y="210">
+                    <xsl:value-of select="$kalenderWoche + 1"/>
+                </text>
+                <text x="55" y="320">
+                    <xsl:value-of select="$kalenderWoche + 2"/>
+                </text>
+                <text x="55" y="430">
+                    <xsl:value-of select="$kalenderWoche + 3"/>
+                </text>
+                <text x="55" y="540">
+                    <xsl:value-of select="$kalenderWoche + 4"/>
+                </text>
+                <text x="55" y="650">
+                    <xsl:value-of select="$kalenderWoche + 5"/>
+                </text>
+
+            </xsl:if>   
+
+    </xsl:template>
 
 </xsl:stylesheet>
