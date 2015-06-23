@@ -29,8 +29,6 @@
             <xsl:call-template name="fuelleWoche"/>
             <xsl:call-template name="schreibeWochenTage"/>
 
-            <!--xsl:call-template name="wochenTage"> </xsl:call-template-->
-
         </svg>
     </xsl:template>
 
@@ -114,7 +112,6 @@
         </xsl:if>
     </xsl:template>
 
-    <xsl:param name="yWert"/>
 
     <!-- Schreibe das Datum über jeden Wochentag -->
     <xsl:template name="schreibeWochenTage">
@@ -125,8 +122,7 @@
             <xsl:value-of select="functx:day-of-week($aktuellesDatum)"/>
         </xsl:param>
         <xsl:param name="zaehler">0</xsl:param>
-        <xsl:param name="yWert">50</xsl:param>
-
+  
         <xsl:choose>
 
             <!-- Der Sonntag muss extra behandelt werden -->
