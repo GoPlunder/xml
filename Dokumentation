@@ -74,20 +74,25 @@
             <use xlink:href="#li2"/>
         </svg>]]>                       
                     </programlisting>
-                 </para>
-                
+                </para>
+
             </sect2>
             <sect2>
                 <title>XSLT zur Generierung der Event-Elemente</title>
-                <para>Um die Event-Elemente eines Tages, einer Woche oder eines Monats in das entsprechende Template einzutragen wird die
-                XSL Transformation (XSLT), eine Programmiersprache zu Transformation von XML Dokumenten, angewendet. Im esten Schritt wird der
-                Datei, welche die Beispielevents enthält (sampleEvents.xml) ein Stylesheet zugeordnet, das diese Events absteigend nach
-                Datum und Startzeitpunkt sortiert (sampleEvents.xsl). Das Ergebnis ist eine XML-Datei mit den sortierten Event-Elementen
-                (events_sortiert.xml). Aus dieser Zwischendatei heraus werden dann die entsprechenden Stylesheets, entweder für die Tages-,
-                die Wochen-, oder die Monatssicht aufgerufen (tagessicht.xsl, wochensicht.xls, monatssicht.xsl).</para>
-                <para>Nachfolgender Programmcode zeigt beispielhaft, wie die Events aus der sortierten Zwischendatei gefiltert und jweils als 
-                Rechteck, dessen Höhe von der Dauer des Events abhängt, in das oben beschriebene SVG-Template der Tagessicht hineingezeichnet werden.
-                <programlisting><![CDATA[<xsl:template match="/">
+                <para>Um die Event-Elemente eines Tages, einer Woche oder eines Monats in das
+                    entsprechende Template einzutragen wird die XSL Transformation (XSLT), eine
+                    Programmiersprache zu Transformation von XML Dokumenten, angewendet. Im esten
+                    Schritt wird der Datei, welche die Beispielevents enthält (sampleEvents.xml) ein
+                    Stylesheet zugeordnet, das diese Events absteigend nach Datum und Startzeitpunkt
+                    sortiert (sampleEvents.xsl). Das Ergebnis ist eine XML-Datei mit den sortierten
+                    Event-Elementen (events_sortiert.xml). Aus dieser Zwischendatei heraus werden
+                    dann die entsprechenden Stylesheets, entweder für die Tages-, die Wochen-, oder
+                    die Monatssicht aufgerufen (tagessicht.xsl, wochensicht.xls,
+                    monatssicht.xsl).</para>
+                <para>Nachfolgender Programmcode zeigt beispielhaft, wie die Events aus der
+                    sortierten Zwischendatei gefiltert und jweils als Rechteck, dessen Höhe von der
+                    Dauer des Events abhängt, in das oben beschriebene SVG-Template der Tagessicht
+                    hineingezeichnet werden. <programlisting><![CDATA[<xsl:template match="/">
         <svg  height="200%" width="100%">
             <!-- Template "tagessicht" wird aufgerufen -->
             <xsl:call-template name="tagessicht"/>
@@ -129,9 +134,9 @@
         </svg>       
     </xsl:template>]]></programlisting>
                 </para>
-                <para> Das Ergebnis enthält nun das Datum des aktuellen Tages, das Template der Tagessicht und die Rechtecke für die Events 
-                    an dem betrechteten Tag. Folgendes Bild zeigt die Tagessicht nach der XSL Transformation:
-                    <figure>
+                <para> Das Ergebnis enthält nun das Datum des aktuellen Tages, das Template der
+                    Tagessicht und die Rechtecke für die Events an dem betrechteten Tag. Folgendes
+                    Bild zeigt die Tagessicht nach der XSL Transformation: <figure>
                         <title>Template Tagessicht</title>
                         <mediaobject>
                             <imageobject role="html">
@@ -144,25 +149,34 @@
                         </mediaobject>
                     </figure>
                 </para>
-
-
             </sect2>
             <sect2>
                 <title>Wiederverwendung der Templates</title>
                 <para>Bei der Erstellung der Templates wurde darauf geachtet, dass sie nicht nur für
-                    eine Sicht verwendet werden können, sondern auch für die anderen Sichten. So
-                    wird in der Wochensicht z.B. das Template der Tagessicht aufgerufen und in der
-                    Monatssicht das Template der Wochensicht. </para>
-                <para> </para>
+                    eine Sicht verwendet werden können, sondern auch für die Erstellung der anderen Sichten brauchbar sind.</para>
+                <para>Mit Hilfe des Befehls <![CDATA[<xsl:include href="tagessicht.xsl"/>]]> wird das
+                    Stylesheet der Tagessicht, dessen Template in der Wochensicht benötigt wird, in
+                    diese mit eingebunden. Genauso wird in der Monatssicht das Stylesheet der
+                    Tagessicht eingebunden. Mit Hilfe des Befehls
+                    <![CDATA[ <xsl:call-template name="tagessicht"/>]]> können einzelene Templates
+                    aufgerufen werden. </para>
             </sect2>
             <sect2>
                 <title>Uhrzeit</title>
                 <para>Die Uhrzeit wird durch xs:time dargestellt. Die voreingestellte Darstellung
                     eines xs:time ist Stunden:Minuten:Sekunden (hh:mm:ss). Dank der
-                    Formatierungsfunktion format-time() in XSLT 2.0 kann man xs:time Werte hernehmen
+                    Formatierungsfunktion format-time() in XSLT 2.0 kann man xs:time Werte verwenden
                     und dann das Format dieser ändern. Somit können wir die Sekunden in den Sichten
                     weglassen und erhalten stattdessen die Darstellung Stunden:Minuten
                     (hh:mm).</para>
+            </sect2>
+            <sect2>
+                <title>Einbindung der FuncX Bibliothek</title>
+                <para>Für die Manipulation von Datums- und Zeitangaben wird die XSLT-Bibliothek FuncX 
+                    (<link xlink:href="http://www.xsltfunctions.com/"></link>) verwendet. Die Bibliothek wird v.a. dazu benötigt, um die
+                    Wochen und Monate mit den richtigen Daten zu füllen. Mit Hilfe ihrer Funktionen können so
+                    beispielsweise der erste Tag im Monat, die Anzahl der Tage eines Monats, die Nummer eines Tages im Jahr, u.v.m. bestimmt 
+                    werden. </para>
             </sect2>
         </sect1>
         <sect1>
