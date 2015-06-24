@@ -73,4 +73,16 @@
         <tagZuvor>2015-05-13</tagZuvor>
         <tagDanach>2015-05-15</tagDanach>
     </event>
+    <event>
+        <datum>2015-06-10</datum>
+        <datumWochenTag>3</datumWochenTag>
+        <datumJahresTag>161</datumJahresTag>
+        <startZeit>12:00</startZeit>
+        <startZeitInMin>720</startZeitInMin>
+        <endZeit>16:00</endZeit>
+        <endZeitInMin>960</endZeitInMin>
+        <beschreibung>Cafe</beschreibung>
+        <tagZuvor>2015-06-09</tagZuvor>
+        <tagDanach>2015-06-11</tagDanach>
+    </event>
 </events>
