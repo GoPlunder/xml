@@ -1,10 +1,10 @@
 TODO:
 - Doku schreiben:
 	- Pattern erklären (B)
-	- SuperEvent erklären (B)
 - Zeitangabe ohne Sekunden (B)
 - Funktionen von CalendarX (extra Datei für die bereits implementierten XQuery Aufrufe)
 - Patterns 
-- Externe CSS Dateien (sicherstellen, dass es auch in Chrome geht) (B)
+- Externe CSS Dateien (B)
 - Kalendarischen auslesen (T) ?? Was war das?
-- eXist Account anlegen (T + B)
+- Rausfinden wie man Unterkapitel in Dokumentation PDF anzeigt (B)
+- 
