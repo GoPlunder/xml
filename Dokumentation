@@ -30,6 +30,19 @@
         <sect1>
             <title>XML Schema: Die Architektur von CalendarX</title>
             <para>Das konzeptuelle Schema für Kalender-Daten</para>
+            <sect2>
+                <title>Modellierung der Super Events</title>
+                <para>In CalendarX gibts es wie in jedem anderen Kalender auch Events, die Felder
+                    wie eine Beschreibung, ein Datum, eine Zeit oder Teilnehmer haben. Das Besondere
+                    an CalendarX sind jedoch die Super Events. Jedes Event wird definiert durch bis
+                    zu einer Event Rule, durch die dann beispielsweise ein Events täglich oder
+                    wöchentlich auftritt. Ein Super Event bietet die zusätzliche Möglichkeit nicht
+                    nur eine Event Rule anzuwenden, sondern beliebig viele.   </para>
+            </sect2>
+            <sect2>
+                <title>Pattern</title>
+                <para></para>
+            </sect2>
         </sect1>
         <sect1>
             <title>Umsetzung der Tages-, Wochen und Monatssicht</title>
