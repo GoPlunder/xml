@@ -8,3 +8,7 @@ TODO:
 - Externe CSS Dateien (sicherstellen, dass es auch in Chrome geht) (B)
 - Kalendarischen auslesen (T) ?? Was war das?
 - eXist Account anlegen (T + B)
+
+
+Erstmal zurückgestellt:
+- Darstellung 2 Termine an einem Tag in Monatssicht (bisher Überlagerung)
