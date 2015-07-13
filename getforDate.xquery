@@ -1,19 +1,21 @@
-xquery version "1.0";
+xquery version "3.0";
 
 declare namespace functx = "http://www.functx.com";
 declare namespace fn = "http://www.w3.org/2005/xpath-functions";
 declare namespace local = "http://www.w3.org/2005/xquery-local-functions";
 
+
 declare function local:getEventsForDay ($d as xs:date?)  {
   let $events := doc("sampleCalendarX.xml")/eventRules/eventRule
-  for $patterns in doc("sampleCalendarX.xml")/eventRules/eventRule/recurrencePattern
-
-
-  (fn:filter ($events, $filt) )
-  functx:sort($events/@startTime)
-  
- return  
+  for $patterns in doc("sampleCalendarX.xml")//recurrencePattern
+ return functx:sort($events/@startTime)(fn:filter ($events, local:isDateInPattern ($d, $patterns)) )
 };
+
+declare function local:getEventsForPeriod ($d as xs:date?, $i as xs:int)  {
+   let $getEv := function ($d) {if ($i=0) then ()
+   else concat ((local:getEventsForDay ($d)) , (local:getEventsForPeriod(functx:next-day ($d), (($i)-1))))}
+   return $getEv($d)
+  };
 
 
 (:Hilfsfunktionen. We check our date regarding simple patterns - daily and weekly:)
@@ -63,3 +65,5 @@ declare function local:isDateInPattern ($d as xs:date, $p as xs:string?) as xs:b
  
  (:Calling the actual function based on "aktuellesDatum" - XForms Intergation to do!!:)
 local:getEventsForDay(doc('aktuellesDatum.xml')/datum)
+
+local:getEventsForPeriod((doc('aktuellesDatum.xml')/datum),7)
