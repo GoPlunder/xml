@@ -5,15 +5,46 @@ declare namespace fn = "http://www.w3.org/2005/xpath-functions";
 declare namespace local = "http://www.w3.org/2005/xquery-local-functions";
 
 
+declare function functx:day-of-week
+  ( $date as xs:anyAtomicType? )  as xs:integer? {
+
+  if (empty($date))
+  then ()
+  else xs:integer((xs:date($date) - xs:date('1901-01-06'))
+          div xs:dayTimeDuration('P1D')) mod 7
+ } ;
+declare function functx:day-of-week-name-en
+  ( $date as xs:anyAtomicType? )  as xs:string? {
+
+   ('Sunday', 'Monday', 'Tuesday', 'Wednesday',
+    'Thursday', 'Friday', 'Saturday')
+      [functx:day-of-week($date) + 1]
+ } ;
+declare function functx:between-inclusive
+  ( $value as xs:anyAtomicType? ,
+    $minValue as xs:anyAtomicType ,
+    $maxValue as xs:anyAtomicType )  as xs:boolean {
+
+   $value >= $minValue and $value <= $maxValue
+ } ;
+declare function functx:next-day
+  ( $date as xs:anyAtomicType? )  as xs:date? {
+
+   xs:date($date) + xs:dayTimeDuration('P1D')
+ } ;
+ 
 declare function local:getEventsForDay ($d as xs:date?)  {
   let $events := doc("sampleCalendarX.xml")/eventRules/eventRule
-  for $patterns in doc("sampleCalendarX.xml")//recurrencePattern
- return functx:sort($events/@startTime)(fn:filter ($events, local:isDateInPattern ($d, $patterns)) )
+  for $patterns in $events//recurrencePattern
+  let $evfDay := fn:filter ($events, local:isDateInPattern ($d, $patterns))
+  order by($evfDay/@startTime)
+  return  ()
 };
 
 declare function local:getEventsForPeriod ($d as xs:date?, $i as xs:int)  {
-   let $getEv := function ($d) {if ($i=0) then ()
-   else concat ((local:getEventsForDay ($d)) , (local:getEventsForPeriod(functx:next-day ($d), (($i)-1))))}
+   let $getEv := function ($d)
+          {if ($i=0) then ()
+          else concat ((local:getEventsForDay ($d)) , (local:getEventsForPeriod(functx:next-day ($d), (($i)-1))))}
    return $getEv($d)
   };
 
@@ -26,7 +57,7 @@ declare function local:getEventsForPeriod ($d as xs:date?, $i as xs:int)  {
   return(functx:between-inclusive ($d, $dp/@startDate ,$dp/@endDate))
   };
 
-declare function local:isInWeekly ($d as xs:date, $p as xs:string?) as xs:boolean
+ declare function local:isInWeekly ($d as xs:date, $p as xs:string?) as xs:boolean
 {
  for $wp in doc("sampleCalendarX.xml")/weeklyPattern[@description eq $p]
  return (functx:day-of-week-name-en ($d) eq $wp/@dayOfWeek)
@@ -65,5 +96,3 @@ declare function local:isDateInPattern ($d as xs:date, $p as xs:string?) as xs:b
  
  (:Calling the actual function based on "aktuellesDatum" - XForms Intergation to do!!:)
 local:getEventsForDay(doc('aktuellesDatum.xml')/datum)
-
-local:getEventsForPeriod((doc('aktuellesDatum.xml')/datum),7)
