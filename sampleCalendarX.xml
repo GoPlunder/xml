@@ -27,8 +27,20 @@
 							<recurrencePattern>tuesdaysInS2015</recurrencePattern>
 							<attendees>
 								<attendee>Anne Brüggemann-Klein</attendee>
+								<attendee>Atticus Finch</attendee>
 							</attendees>
 							<location>HS2</location>
+						</eventRule>
+					</eventRules>
+				</superEvent>
+				<superEvent description="test" categories="teaching">
+					<eventRules>
+						<eventRule description="test 2nd event in day" startTime="12:15:00" endTime="13:45:00" note="">
+							<recurrencePattern>test</recurrencePattern>
+							<attendees>
+								<attendee>Anne Brüggemann-Klein</attendee>
+							</attendees>
+							<location>00.09.13A</location>
 						</eventRule>
 					</eventRules>
 				</superEvent>
@@ -57,6 +69,7 @@
 		<dailyPattern description="ChrHf" startDate="2015-05-14" endDate="2015-05-14"/>
 		<dailyPattern description="Fronleichnam" startDate="2015-06-04" endDate="2015-06-04"/>
 		<dailyPattern description="S2015" startDate="2015-04-13" endDate="2015-07-17"></dailyPattern>
+		<dailyPattern description="test" startDate="2015-06-16" endDate="2015-06-16"></dailyPattern>
 		<weeklyPattern  description="mondays" dayOfWeek="Monday"/>
 		<weeklyPattern  description="tuesdays" dayOfWeek="Tuesday"/>
 		<weeklyPattern description="thursdays" dayOfWeek="Thursday"/>
@@ -76,6 +89,7 @@
 	<users/>
 	<contacts>
 		<contact description="Anne Brüggemann-Klein"/>
+		<contact description="Atticus Finch"/>
 	</contacts>
 	<locations>
 		<location description="00.09.13A"/>

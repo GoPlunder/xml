@@ -55,7 +55,6 @@ declare function functx:next-day
  };
 
 
-
 declare function local:isInUnion ($d as xs:date, $p as xs:string?) as xs:boolean
 {
  let $union := doc("sampleCalendarX.xml")//unionPattern[@description = $p]
@@ -75,16 +74,33 @@ declare function local:isInDifference ($d as xs:date, $p as xs:string?) as xs:bo
  return  if (empty($intersec)) then false() else ((local:isDateInPattern($d, ($intersec/firstPattern))) and (local:isDateInPattern($d, ($intersec//furtherPattern))))
  };
 
+declare function local:getEventsForDay ($d as xs:date?)  {
+  for $events in doc("sampleCalendarX.xml")//eventRule
+  let $patterns := $events//recurrencePattern
+  let $patsfDay := fn:filter ( function($a){if (local:isDateInPattern ($d,$a)) then true() else false()}, $patterns )
+  let $evsfDay := $events[//$patterns = $patsfDay]
+  order by($evsfDay/@startTime)
+  return if (empty($evsfDay)) then () else $evsfDay
+  };
 
 
 let $d := doc('aktuellesDatum.xml')/datum/text()
-let $p := "thursdaysInS105wOFeiertage"
-return local:isDateInPattern ($d, $p) 
-
-
-(: To Do next:
-
-let $d := doc('aktuellesDatum.xml')/datum/text()
-
-return local:getEventsForDay($d) als ein xml document mit einzelnen events mit xslt-transformation für tagessicht:)
-
+let $efd := <events>{local:getEventsForDay($d)}</events>
+let $eventsforday := if(empty($efd)) then <events></events> else <events> {
+        for $e in $efd/eventRule return
+        element event {
+                element datum {$d},
+                element datumWochenTag {  if (functx:day-of-week($d) = 0) then 7 else functx:day-of-week($d)},
+                (:element datumJahresTag {functx:day-in-year($d)},:)
+                element startZeit {fn:data($e/@startTime)},
+                element startZeitInMin {hours-from-time($e/@startTime) * 60 + minutes-from-time($e/@startTime)},
+                element endZeit {fn:data($e/@endTime)},
+                element endZeitInMin {hours-from-time($e/@endTime) * 60 + minutes-from-time($e/@endTime)},
+                element beschreibung {fn:data($e/@description)},
+               (: element tagZuvor {functx:previous-day($d)},:)
+                element tagDanach {functx:next-day($d)},
+                element location {$e/location/text()},
+                element attendees {for $a in $e//attendee/text() return <attendee>{$a}</attendee>}
+                }
+         } </events>
+return  $eventsforday
