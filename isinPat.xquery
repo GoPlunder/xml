@@ -79,7 +79,7 @@ declare function local:isInDifference ($d as xs:date, $p as xs:string?) as xs:bo
 
 let $d := doc('aktuellesDatum.xml')/datum/text()
 let $p := "thursdaysInS105wOFeiertage"
-return local:isInDifference ($d, $p) 
+return local:isDateInPattern ($d, $p) 
 
 
 (: To Do next:
