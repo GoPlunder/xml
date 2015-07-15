@@ -3,38 +3,43 @@
     xmlns:xs="http://www.w3.org/2001/XMLSchema" exclude-result-prefixes="xs" version="2.0"
     xmlns:functx="http://www.functx.com"
     xmlns="http://www.w3.org/1999/xhtml">
-    
+  
+<!--xsl:import href="functions.xquery"/-->  
 
     <xsl:template match="/">
         <svg  height="200%" width="100%">
+            
             <!-- Hier wird das oben definierte Template "tagessicht" aufgerufen -->
             <xsl:call-template name="tagessicht"/>
             
             <!-- Globale Variablen -->
             <xsl:variable name="aktuellesDatum" as="xs:date"
                 select="document('aktuellesDatum.xml')/datum"/>
-
+            
             <!-- Schreibe das Datum des Tages in die obere Mitte der Seite (festgelegt in aktuellesDatum.xml) -->
             <text x="600" y="25" text-anchor="middle" font-size="20" fill="red">
                 <xsl:value-of select="$aktuellesDatum"/>
             </text>
-
+            
             <!-- Falls vorhanden, trage die Termine für den Tag in das Template ein -->
             <xsl:for-each
                 select="document('events_sortiert.xml')/events/event[datum = $aktuellesDatum]">
-
+                
                 <xsl:variable name="startRechteck" select="80 + (startZeitInMin div 2)"/>
                 <xsl:variable name="endeRechteck" select="80 + (endZeitInMin div 2)"/>
-
+                
                 <!-- Zeichne ein Rechteck für die Zeitspanne, in der ein Termin stattfindet -->
                 <rect x="105" y="{$startRechteck}" width="1040"
                     height="{($endeRechteck)-$startRechteck}" fill="gainsboro"/>
                 <!-- Schreibe Startzeit, Endzeit und die Beschreibung in das Rechteck -->
                 <text x="115" y="{$startRechteck +15}">
                     <xsl:value-of select="startZeit"/> - <xsl:value-of select="endZeit"/> :
-                        <xsl:value-of select="beschreibung"/>
+                    <xsl:value-of select="beschreibung"/>
                 </text>
             </xsl:for-each>
+            
+            
+            <!--text x= "200" y="200"><xsl:value-of select="local:getEventsForDate(document('aktuellesDatum.xml')/datum"/></text-->
         </svg>
         
     </xsl:template>
