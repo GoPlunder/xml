@@ -4,7 +4,7 @@
     xmlns:functx="http://www.functx.com"
     xmlns="http://www.w3.org/1999/xhtml">
   
-<!--xsl:import href="functions.xquery"/-->  
+<!--xsl:import href="getForDate.xquery"/-->  
 
     <xsl:template match="/">
         <svg  height="200%" width="100%">
