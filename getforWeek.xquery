@@ -1,21 +1,21 @@
 xquery version "3.0";
 declare namespace fn = "http://www.w3.org/2005/xpath-functions";
 declare namespace transform="http://exist-db.org/xquery/transform";
-declare namespace p = "http://probe.com";
+declare namespace w = "http://week.com";
 (:declare option exist:serialize "method=xhtml media-type=text/html indent=yes";:)
 import module namespace functx = "functX" at "functX.xquery";
 import module namespace local = "isinPat" at "isinPat.xquery";
 
-declare function p:getEvents ($d as xs:date?, $i as xs:integer )  {
+declare function w:getEvents ($d as xs:date?, $i as xs:integer )  {
     if (($i=0) or ($i=8)) then ()
-    else ((p:forDay($d)) | (p:getEvents(functx:next-day ($d), (($i)+1))))
+    else ((w:forDay($d)) | (w:getEvents(functx:next-day ($d), (($i)+1))))
   };
   
-declare function p:getEventsForWeek($d, $i) {
-    if ($i=1) then ((p:forDay($d)) | (p:getEvents(functx:next-day ($d), (($i)+1))))
-    else (p:getEventsForWeek(functx:previous-day($d), (($i)-1)))};
+declare function w:getEventsForWeek($d, $i) {
+    if ($i=1) then ((w:forDay($d)) | (w:getEvents(functx:next-day ($d), (($i)+1))))
+    else (w:getEventsForWeek(functx:previous-day($d), (($i)-1)))};
 
-declare function p:forDay ($d){
+declare function w:forDay ($d){
 let $efd := <events>{local:getEventsForDay($d)}</events>
 let $eventsforday := if(empty($efd)) then <events date="{$d}"></events> else <events date="{$d}"> {
         for $e in $efd/eventRule return
@@ -39,5 +39,5 @@ return  $eventsforday
 
 let $d := doc('aktuellesDatum.xml')/datum/text()
 let $i := if (functx:day-of-week($d) = 0) then 7 else functx:day-of-week($d)
-let $efw := <events>{p:getEventsForWeek($d, $i)}</events>
+let $efw := <events>{w:getEventsForWeek($d, $i)}</events>
 return  $efw

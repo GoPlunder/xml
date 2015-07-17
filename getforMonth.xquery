@@ -1,22 +1,22 @@
 xquery version "3.0";
 declare namespace fn = "http://www.w3.org/2005/xpath-functions";
 declare namespace transform="http://exist-db.org/xquery/transform";
-declare namespace p = "http://probe.com";
+declare namespace m = "http://month.com";
 (:declare option exist:serialize "method=xhtml media-type=text/html indent=yes";:)
 import module namespace functx = "functX" at "functX.xquery";
 import module namespace local = "isinPat" at "isinPat.xquery";
 
-declare function p:getEvents ($d as xs:date?, $i as xs:date, $j as xs:date )  {
+declare function m:getEvents ($d as xs:date?, $i as xs:date, $j as xs:date )  {
     if (($d=functx:previous-day($i)) or ($d=functx:next-day($j))) then ()
-    else ((p:forDay($d)) | (p:getEvents(functx:next-day ($d), $i, $j)))
+    else ((m:forDay($d)) | (m:getEvents(functx:next-day ($d), $i, $j)))
   };
   
-declare function p:getEventsForMonth($d, $i, $j) {
-    if ($d= $i) then ((p:forDay($d)) | (p:getEvents(functx:next-day ($d), $i, $j)))
-    else (p:getEventsForMonth(functx:previous-day($d), $i, $j))
+declare function m:getEventsForMonth($d, $i, $j) {
+    if ($d= $i) then ((m:forDay($d)) | (m:getEvents(functx:next-day ($d), $i, $j)))
+    else (m:getEventsForMonth(functx:previous-day($d), $i, $j))
     };
 
-declare function p:forDay ($d){
+declare function m:forDay ($d){
 let $efd := <events>{local:getEventsForDay($d)}</events>
 let $eventsforday := if(empty($efd)) then <events date="{$d}"></events> else <events date="{$d}"> {
         for $e in $efd/eventRule return
@@ -41,5 +41,5 @@ return  $eventsforday
 let $d := doc('aktuellesDatum.xml')/datum/text()
 let $i := functx:first-day-of-month($d)
 let $j := functx:last-day-of-month($d)
-let $efm := <events>{p:getEventsForMonth($d, $i, $j)}</events>
+let $efm := <events>{m:getEventsForMonth($d, $i, $j)}</events>
 return  $efm

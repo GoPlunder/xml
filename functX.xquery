@@ -105,3 +105,9 @@ declare function functx:day-in-year
             month-from-date(xs:date($date)),
             1)
  } ;
+ declare function functx:is-value-in-sequence
+  ( $value as xs:anyAtomicType? ,
+    $seq as xs:anyAtomicType* )  as xs:boolean {
+
+   $value = $seq
+ } ;
