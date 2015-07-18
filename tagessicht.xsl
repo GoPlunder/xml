@@ -23,7 +23,7 @@
             
             <!-- Falls vorhanden, trage die Termine für den Tag in das Template ein -->
             <xsl:for-each
-                select="document('events_sortiert.xml')/events/event[datum = $aktuellesDatum]">
+                select="document('dayEvents.xml')/events/event[datum = $aktuellesDatum]">
                 
                 <xsl:variable name="startRechteck" select="80 + (startZeitInMin div 2)"/>
                 <xsl:variable name="endeRechteck" select="80 + (endZeitInMin div 2)"/>
