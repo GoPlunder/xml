@@ -48,8 +48,8 @@ declare function local:getEventsForDay ($d as xs:date?)  {
   for $events in doc("sampleCalendarX.xml")//eventRule
   let $patterns := $events//recurrencePattern
   let $patsfDay := fn:filter ( function($a){if (local:isDateInPattern ($d,$a)) then true() else false()}, $patterns )
-  let $evsfDay :=  $events 
-  where functx:is-value-in-sequence($patterns, $patsfDay)
+  let $evsfDay :=  $events
+  [some $p in $patsfDay satisfies ($p = .//$patterns)]
   order by($evsfDay/@startTime)
   return if (empty($evsfDay)) then () else $evsfDay
   };
