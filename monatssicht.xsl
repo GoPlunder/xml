@@ -54,7 +54,7 @@
             <xsl:value-of select="functx:days-in-month($aktuellesDatum)"/>
         </xsl:param>
 
-        <xsl:for-each select="document('events_sortiert.xml')/events/event">
+        <xsl:for-each select="document('monthEvents.xml')/events/events/event">
             
             <xsl:if
                 test="datum = $wochentag and functx:day-of-week($wochentag) = 0 and $count &lt; $tageProMonat">

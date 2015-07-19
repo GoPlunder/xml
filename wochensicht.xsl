@@ -73,7 +73,7 @@
             <xsl:value-of select="functx:day-of-week($aktuellesDatum)"/>
         </xsl:param>
 
-        <xsl:for-each select="document('events_sortiert.xml')/events/event">
+        <xsl:for-each select="document('weekEvents.xml')/events/events/event">
 
             <xsl:if
                 test="datumJahresTag = ($datumJahresTag - $nummerAktuellerTag + $counter) and $nummerAktuellerTag > 0">
