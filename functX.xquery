@@ -73,3 +73,41 @@ declare function functx:day-in-year
 
    xs:date($date) - xs:dayTimeDuration('P1D')
  } ;
+ declare function functx:days-in-month
+  ( $date as xs:anyAtomicType? )  as xs:integer? {
+
+   if (month-from-date(xs:date($date)) = 2 and
+       functx:is-leap-year($date))
+   then 29
+   else
+   (31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31)
+    [month-from-date(xs:date($date))]
+ } ;
+ declare function functx:is-leap-year
+  ( $date as xs:anyAtomicType? )  as xs:boolean {
+
+    for $year in xs:integer(substring(string($date),1,4))
+    return ($year mod 4 = 0 and
+            $year mod 100 != 0) or
+            $year mod 400 = 0
+ } ;
+ declare function functx:last-day-of-month
+  ( $date as xs:anyAtomicType? )  as xs:date? {
+
+   functx:date(year-from-date(xs:date($date)),
+            month-from-date(xs:date($date)),
+            functx:days-in-month($date))
+ } ;
+ declare function functx:first-day-of-month
+  ( $date as xs:anyAtomicType? )  as xs:date? {
+
+   functx:date(year-from-date(xs:date($date)),
+            month-from-date(xs:date($date)),
+            1)
+ } ;
+ declare function functx:is-value-in-sequence
+  ( $value as xs:anyAtomicType? ,
+    $seq as xs:anyAtomicType* )  as xs:boolean {
+
+   $value = $seq
+ } ;

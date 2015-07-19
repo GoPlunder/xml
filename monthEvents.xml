@@ -1,0 +1,269 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<events>
+   <events date="2015-06-01">
+      <event>
+         <datum>2015-06-01</datum>
+         <datumWochenTag>1</datumWochenTag>
+         <datumJahresTag>152</datumJahresTag>
+         <startZeit>12:15:00</startZeit>
+         <startZeitInMin>735</startZeitInMin>
+         <endZeit>13:45:00</endZeit>
+         <endZeitInMin>825</endZeitInMin>
+         <beschreibung>EPS2015Mo</beschreibung>
+         <tagZuvor>2015-05-31</tagZuvor>
+         <tagDanach>2015-06-02</tagDanach>
+         <location>00.09.13A</location>
+         <attendees>
+            <attendee>Anne Brüggemann-Klein</attendee>
+         </attendees>
+      </event>
+   </events>
+   <events date="2015-06-02">
+      <event>
+         <datum>2015-06-02</datum>
+         <datumWochenTag>2</datumWochenTag>
+         <datumJahresTag>153</datumJahresTag>
+         <startZeit>16:15:00</startZeit>
+         <startZeitInMin>975</startZeitInMin>
+         <endZeit>17:45:00</endZeit>
+         <endZeitInMin>1065</endZeitInMin>
+         <beschreibung>EPS2015Tue</beschreibung>
+         <tagZuvor>2015-06-01</tagZuvor>
+         <tagDanach>2015-06-03</tagDanach>
+         <location>HS2</location>
+         <attendees>
+            <attendee>Anne Brüggemann-Klein</attendee>
+            <attendee>Atticus Finch</attendee>
+         </attendees>
+      </event>
+   </events>
+   <events date="2015-06-03"/>
+   <events date="2015-06-04"/>
+   <events date="2015-06-05"/>
+   <events date="2015-06-06"/>
+   <events date="2015-06-07"/>
+   <events date="2015-06-08">
+      <event>
+         <datum>2015-06-08</datum>
+         <datumWochenTag>1</datumWochenTag>
+         <datumJahresTag>159</datumJahresTag>
+         <startZeit>12:15:00</startZeit>
+         <startZeitInMin>735</startZeitInMin>
+         <endZeit>13:45:00</endZeit>
+         <endZeitInMin>825</endZeitInMin>
+         <beschreibung>EPS2015Mo</beschreibung>
+         <tagZuvor>2015-06-07</tagZuvor>
+         <tagDanach>2015-06-09</tagDanach>
+         <location>00.09.13A</location>
+         <attendees>
+            <attendee>Anne Brüggemann-Klein</attendee>
+         </attendees>
+      </event>
+   </events>
+   <events date="2015-06-09">
+      <event>
+         <datum>2015-06-09</datum>
+         <datumWochenTag>2</datumWochenTag>
+         <datumJahresTag>160</datumJahresTag>
+         <startZeit>16:15:00</startZeit>
+         <startZeitInMin>975</startZeitInMin>
+         <endZeit>17:45:00</endZeit>
+         <endZeitInMin>1065</endZeitInMin>
+         <beschreibung>EPS2015Tue</beschreibung>
+         <tagZuvor>2015-06-08</tagZuvor>
+         <tagDanach>2015-06-10</tagDanach>
+         <location>HS2</location>
+         <attendees>
+            <attendee>Anne Brüggemann-Klein</attendee>
+            <attendee>Atticus Finch</attendee>
+         </attendees>
+      </event>
+   </events>
+   <events date="2015-06-10"/>
+   <events date="2015-06-11">
+      <event>
+         <datum>2015-06-11</datum>
+         <datumWochenTag>4</datumWochenTag>
+         <datumJahresTag>162</datumJahresTag>
+         <startZeit>10:15:00</startZeit>
+         <startZeitInMin>615</startZeitInMin>
+         <endZeit>12:00:00</endZeit>
+         <endZeitInMin>720</endZeitInMin>
+         <beschreibung>XMLT2015</beschreibung>
+         <tagZuvor>2015-06-10</tagZuvor>
+         <tagDanach>2015-06-12</tagDanach>
+         <location/>
+         <attendees/>
+      </event>
+   </events>
+   <events date="2015-06-12"/>
+   <events date="2015-06-13"/>
+   <events date="2015-06-14"/>
+   <events date="2015-06-15">
+      <event>
+         <datum>2015-06-15</datum>
+         <datumWochenTag>1</datumWochenTag>
+         <datumJahresTag>166</datumJahresTag>
+         <startZeit>12:15:00</startZeit>
+         <startZeitInMin>735</startZeitInMin>
+         <endZeit>13:45:00</endZeit>
+         <endZeitInMin>825</endZeitInMin>
+         <beschreibung>EPS2015Mo</beschreibung>
+         <tagZuvor>2015-06-14</tagZuvor>
+         <tagDanach>2015-06-16</tagDanach>
+         <location>00.09.13A</location>
+         <attendees>
+            <attendee>Anne Brüggemann-Klein</attendee>
+         </attendees>
+      </event>
+   </events>
+   <events date="2015-06-16">
+      <event>
+         <datum>2015-06-16</datum>
+         <datumWochenTag>2</datumWochenTag>
+         <datumJahresTag>167</datumJahresTag>
+         <startZeit>12:15:00</startZeit>
+         <startZeitInMin>735</startZeitInMin>
+         <endZeit>13:45:00</endZeit>
+         <endZeitInMin>825</endZeitInMin>
+         <beschreibung>test 2nd event in day</beschreibung>
+         <tagZuvor>2015-06-15</tagZuvor>
+         <tagDanach>2015-06-17</tagDanach>
+         <location>00.09.13A</location>
+         <attendees>
+            <attendee>Anne Brüggemann-Klein</attendee>
+         </attendees>
+      </event>
+      <event>
+         <datum>2015-06-16</datum>
+         <datumWochenTag>2</datumWochenTag>
+         <datumJahresTag>167</datumJahresTag>
+         <startZeit>16:15:00</startZeit>
+         <startZeitInMin>975</startZeitInMin>
+         <endZeit>17:45:00</endZeit>
+         <endZeitInMin>1065</endZeitInMin>
+         <beschreibung>EPS2015Tue</beschreibung>
+         <tagZuvor>2015-06-15</tagZuvor>
+         <tagDanach>2015-06-17</tagDanach>
+         <location>HS2</location>
+         <attendees>
+            <attendee>Anne Brüggemann-Klein</attendee>
+            <attendee>Atticus Finch</attendee>
+         </attendees>
+      </event>
+   </events>
+   <events date="2015-06-17"/>
+   <events date="2015-06-18">
+      <event>
+         <datum>2015-06-18</datum>
+         <datumWochenTag>4</datumWochenTag>
+         <datumJahresTag>169</datumJahresTag>
+         <startZeit>10:15:00</startZeit>
+         <startZeitInMin>615</startZeitInMin>
+         <endZeit>12:00:00</endZeit>
+         <endZeitInMin>720</endZeitInMin>
+         <beschreibung>XMLT2015</beschreibung>
+         <tagZuvor>2015-06-17</tagZuvor>
+         <tagDanach>2015-06-19</tagDanach>
+         <location/>
+         <attendees/>
+      </event>
+   </events>
+   <events date="2015-06-19"/>
+   <events date="2015-06-20"/>
+   <events date="2015-06-21"/>
+   <events date="2015-06-22">
+      <event>
+         <datum>2015-06-22</datum>
+         <datumWochenTag>1</datumWochenTag>
+         <datumJahresTag>173</datumJahresTag>
+         <startZeit>12:15:00</startZeit>
+         <startZeitInMin>735</startZeitInMin>
+         <endZeit>13:45:00</endZeit>
+         <endZeitInMin>825</endZeitInMin>
+         <beschreibung>EPS2015Mo</beschreibung>
+         <tagZuvor>2015-06-21</tagZuvor>
+         <tagDanach>2015-06-23</tagDanach>
+         <location>00.09.13A</location>
+         <attendees>
+            <attendee>Anne Brüggemann-Klein</attendee>
+         </attendees>
+      </event>
+   </events>
+   <events date="2015-06-23">
+      <event>
+         <datum>2015-06-23</datum>
+         <datumWochenTag>2</datumWochenTag>
+         <datumJahresTag>174</datumJahresTag>
+         <startZeit>16:15:00</startZeit>
+         <startZeitInMin>975</startZeitInMin>
+         <endZeit>17:45:00</endZeit>
+         <endZeitInMin>1065</endZeitInMin>
+         <beschreibung>EPS2015Tue</beschreibung>
+         <tagZuvor>2015-06-22</tagZuvor>
+         <tagDanach>2015-06-24</tagDanach>
+         <location>HS2</location>
+         <attendees>
+            <attendee>Anne Brüggemann-Klein</attendee>
+            <attendee>Atticus Finch</attendee>
+         </attendees>
+      </event>
+   </events>
+   <events date="2015-06-24"/>
+   <events date="2015-06-25">
+      <event>
+         <datum>2015-06-25</datum>
+         <datumWochenTag>4</datumWochenTag>
+         <datumJahresTag>176</datumJahresTag>
+         <startZeit>10:15:00</startZeit>
+         <startZeitInMin>615</startZeitInMin>
+         <endZeit>12:00:00</endZeit>
+         <endZeitInMin>720</endZeitInMin>
+         <beschreibung>XMLT2015</beschreibung>
+         <tagZuvor>2015-06-24</tagZuvor>
+         <tagDanach>2015-06-26</tagDanach>
+         <location/>
+         <attendees/>
+      </event>
+   </events>
+   <events date="2015-06-26"/>
+   <events date="2015-06-27"/>
+   <events date="2015-06-28"/>
+   <events date="2015-06-29">
+      <event>
+         <datum>2015-06-29</datum>
+         <datumWochenTag>1</datumWochenTag>
+         <datumJahresTag>180</datumJahresTag>
+         <startZeit>12:15:00</startZeit>
+         <startZeitInMin>735</startZeitInMin>
+         <endZeit>13:45:00</endZeit>
+         <endZeitInMin>825</endZeitInMin>
+         <beschreibung>EPS2015Mo</beschreibung>
+         <tagZuvor>2015-06-28</tagZuvor>
+         <tagDanach>2015-06-30</tagDanach>
+         <location>00.09.13A</location>
+         <attendees>
+            <attendee>Anne Brüggemann-Klein</attendee>
+         </attendees>
+      </event>
+   </events>
+   <events date="2015-06-30">
+      <event>
+         <datum>2015-06-30</datum>
+         <datumWochenTag>2</datumWochenTag>
+         <datumJahresTag>181</datumJahresTag>
+         <startZeit>16:15:00</startZeit>
+         <startZeitInMin>975</startZeitInMin>
+         <endZeit>17:45:00</endZeit>
+         <endZeitInMin>1065</endZeitInMin>
+         <beschreibung>EPS2015Tue</beschreibung>
+         <tagZuvor>2015-06-29</tagZuvor>
+         <tagDanach>2015-07-01</tagDanach>
+         <location>HS2</location>
+         <attendees>
+            <attendee>Anne Brüggemann-Klein</attendee>
+            <attendee>Atticus Finch</attendee>
+         </attendees>
+      </event>
+   </events>
+</events>

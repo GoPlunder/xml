@@ -2,7 +2,6 @@ xquery version "3.0";
 module namespace local = "isinPat";
 
 declare namespace fn = "http://www.w3.org/2005/xpath-functions";
-declare namespace local2 = "http://www.w3.org/2005/xquery-local-functions";
 import module namespace functx = "functX" at "functX.xquery";
 
   
@@ -49,7 +48,8 @@ declare function local:getEventsForDay ($d as xs:date?)  {
   for $events in doc("sampleCalendarX.xml")//eventRule
   let $patterns := $events//recurrencePattern
   let $patsfDay := fn:filter ( function($a){if (local:isDateInPattern ($d,$a)) then true() else false()}, $patterns )
-  let $evsfDay := $events[//$patterns = $patsfDay]
+  let $evsfDay :=  $events 
+  where functx:is-value-in-sequence($patterns, $patsfDay)
   order by($evsfDay/@startTime)
   return if (empty($evsfDay)) then () else $evsfDay
   };
