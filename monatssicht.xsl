@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
     xmlns:xs="http://www.w3.org/2001/XMLSchema" exclude-result-prefixes="xs" version="2.0"
-    xmlns:functx="http://www.functx.com">
+    xmlns:functx="http://www.functx.com"
+    xmlns:fn="http://www.w3.org/2005/xpath-functions">
 
     <!-- Stylesheets -->
     <xsl:include href="wochensicht.xsl"/>
@@ -38,7 +39,7 @@
             <text x="55" y="75">KW</text>
 
             <text x="600" y="25" text-anchor="middle" font-size="20" fill="red">
-                <xsl:value-of select="functx:month-name-en($aktuellesDatum)"/>
+                <xsl:value-of select="fn:concat(functx:month-name-en($aktuellesDatum),' ',  fn:year-from-date($aktuellesDatum))"/>
             </text>
 
         </svg>
