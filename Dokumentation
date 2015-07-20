@@ -13,6 +13,10 @@
             <personname>Thea Heim</personname>
             <email>thea.heim@web.de</email>
         </author>
+        <author>
+            <personname>Youlia Goldberg</personname>
+            <email>goldbery@in.tum.de</email>
+        </author>
     </info>
     <chapter>
         <title>Einleitung</title>
@@ -27,6 +31,17 @@
     </chapter>
     <chapter>
         <title>Das Kalender-System CalendarX</title>
+    <sect1>
+            <title>Die XRX-Architektur</title>            
+         <para><figure><title>CalendarX Layer Structure</title>
+                <mediaobject>
+                   <imageobject role="fo">
+                        <imagedata scalefit="1" width="80%" contentdepth="80%"
+                            format="PDF" fileref="Images/Architecture.png"/>
+                    </imageobject>
+                </mediaobject>
+            </figure></para>
+       </sect1>   
         <sect1>
             <title>XML Schema: Die Architektur von CalendarX</title>
             <para>Das konzeptuelle Schema für Kalender-Daten</para>
@@ -191,6 +206,58 @@
         <sect1>
             <title>Server-Komponente</title>
             <para>Services, umgesetzt mit XQuery und XSLT</para>
+            <sect2>
+                <title> XProc </title>
+            <para> An der Server-Seite wirden die Kunden-Anfragen einen XProc-Prozess auslösen, bei dem 
+            das angegebene Datum als Element im XML-Dokument <emphasis>aktuellesDatum.xml</emphasis> gespeichert und mit Schema 
+            <emphasis>aktuellesDatum.xsd</emphasis> validiert wird.</para>
+            <para>Als nächstes, wird das XML-Dokument sampleCalendarX.xml durch Validate-XQuery-XSLT-Pipe transformiert . 
+            Als Output erhalten wir entsprechenden Browser-Sicht.</para>
+            <para>XProc erlaubt es, Workflow zu automatisieren und veranschaulichen. Darüber hinaus, bei Benutzung von XProc
+            wird die Architektur (welche Operationen wann passieren) von den eigentlichen Code für diesen Operationen (wie sie ausgeführt werden)
+            getrennt: Separation of Concerns.</para>
+            <para> Der Pipe-Prozess läuft folgendermaßen ab. 
+            Als erstes wird<emphasis>sampleCalendarX.xml</emphasis>  mit Schema <emphasis>CalendarX.xsd </emphasis>validiert. Dann wird Kunden-Anfrage getestet:
+            ob Tages-, Wochen- oder Monatsevents gefragt wurde. Dies erfolgt via <emphasis>p:choose</emphasis> step, wobei eine Verzweigung von drei Optionen
+            entsteht. Jede Option löst eine eigene Subpipe aus. Wenn die Option "Tag" gewählt wurde, geht das validierte Dokument
+            <emphasis>sampleCalendarX.xml</emphasis> in die "Tag"-Subpipe als Input. Dort erfolgt zunächst
+            Xquery mit <emphasis>getforDate.xquery</emphasis> und danach wird Kalendersicht im Browser mit <emphasis>tagessicht.xsl</emphasis> erzeugt.
+            Für die Option "Monat" erfolgt Xquery mit <emphasis>getforMonth.xquery</emphasis> und danach die Transformation mit
+            <emphasis>monatssicht.xsl</emphasis>. Die "Woche"-Subpipe funktioniert genau so mit <emphasis>getforWeek.xquery</emphasis>
+            und <emphasis>wochensicht.xsl</emphasis>
+            </para>
+            <para>Output für alle drei Subprozesse wird der in Browser angezeigte Kalendersicht.</para>
+            </sect2>
+        <sect2><title> XQuery </title>
+            <para> Client hat die Möglichkeit, für ein von ihm auserwähltes Datum drei unterschiedliche Anfragen an DB zu stellen: 
+            <itemizedlist>
+                <listitem>
+                    <para>Events für dieses Datum</para>
+                </listitem>
+                <listitem>
+                    <para>Events für eine Woche, inklusive dieses Datum</para>
+                </listitem>
+                <listitem>
+                    <para>Events für einen Kalendermonat, inklusive dieses Datum</para>
+                </listitem>
+            </itemizedlist></para>
+            <sect3><title>Module</title>
+            <para>Um Durchblick zu bewähren haben wir die Queries in folgenden Module aufgeteilt:
+                <itemizedlist>
+                    <listitem>
+                        <para>FunctX - Module</para>
+                        <para> Das ist eine Sammlung von den FunctX-funktionen, die andere Module benutzen.
+                        </para>
+                    </listitem>
+                    <listitem>
+                        <para>Is Date in Pattern (Hilfsfunktionen)- Module</para>
+                    </listitem>
+                    <listitem>
+                        <para>Eigentliche getrennte Queries für Tag, Woche und Monat</para>
+                    </listitem>
+                </itemizedlist></para>
+            </sect3>
+        </sect2>
         </sect1>
     </chapter>
     <chapter>
