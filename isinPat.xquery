@@ -43,7 +43,8 @@ declare function local:isInDifference ($d as xs:date, $p as xs:string?) as xs:bo
  let $intersec := doc("sampleCalendarX.xml")//intersectionPattern[@description = $p]
  return  if (empty($intersec)) then false() else ((local:isDateInPattern($d, ($intersec/firstPattern))) and (local:isDateInPattern($d, ($intersec//furtherPattern))))
  };
-
+ 
+(:
 declare function local:getEventsForDay ($d as xs:date?)  {
   for $events in doc("sampleCalendarX.xml")//eventRule
   let $patterns := $events//recurrencePattern
@@ -53,3 +54,4 @@ declare function local:getEventsForDay ($d as xs:date?)  {
   order by($evsfDay/@startTime)
   return if (empty($evsfDay)) then () else $evsfDay
   };
+  :)
