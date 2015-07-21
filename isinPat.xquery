@@ -52,3 +52,25 @@ declare function local:getEventsForDay ($d as xs:date?)  {
   order by($evsfDay/@startTime)
   return if (empty($evsfDay)) then () else $evsfDay
   };
+  
+ declare function local:forDay ($d){
+let $efd := <events>{local:getEventsForDay($d)}</events>
+let $eventsforday := if(empty($efd)) then <events date="{$d}"></events> else <events date="{$d}"> {
+        for $e in $efd/eventRule return
+        element event {
+                element datum {$d},
+                element datumWochenTag {  if (functx:day-of-week($d) = 0) then 7 else functx:day-of-week($d)},
+                element datumJahresTag {functx:day-in-year($d)},
+                element startZeit {fn:data($e/@startTime)},
+                element startZeitInMin {hours-from-time($e/@startTime) * 60 + minutes-from-time($e/@startTime)},
+                element endZeit {fn:data($e/@endTime)},
+                element endZeitInMin {hours-from-time($e/@endTime) * 60 + minutes-from-time($e/@endTime)},
+                element beschreibung {fn:data($e/@description)},
+                element tagZuvor {functx:previous-day($d)},
+                element tagDanach {functx:next-day($d)},
+                element location {$e/location/text()},
+                element attendees {for $a in $e//attendee/text() return <attendee>{$a}</attendee>}
+                }
+         } </events>
+return  $eventsforday
+};

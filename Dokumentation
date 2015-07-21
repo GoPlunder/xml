@@ -57,7 +57,7 @@
                     einleitenden Höhen- und Breitenangaben definiert. Innerhalb der SVG-Tags wird
                     die entsprechende Graphik gezeichnet.</para>
                 <para>Nachfolgend wird beispielhaft das Template "tagessicht" beschrieben. Dieses
-                    enhält 25 horizontale Linien, innerhalb zweier Linien steht jeweils die volle
+                    enthält 25 horizontale Linien, innerhalb zweier Linien steht jeweils die volle
                     Stunde von 0:00 Uhr bis 23:00 Uhr eingrenzen. Zudem enthält das Template eine
                     vertikale Linie, um die Uhrzeiten von den Kalendereinträgen abzugrenzen. <programlisting language="XML"><![CDATA[   <!-- Schreibt jede volle Stunde auf eine horizontale Linie -->
     <xsl:template name="tagessicht">
@@ -96,7 +96,7 @@
                 <title>XSLT zur Generierung der Event-Elemente</title>
                 <para>Um die Event-Elemente eines Tages, einer Woche oder eines Monats in das
                     entsprechende Template einzutragen wird die XSL Transformation (XSLT), eine
-                    Programmiersprache zu Transformation von XML Dokumenten, angewendet. Im esten
+                    Programmiersprache zu Transformation von XML Dokumenten, angewendet. Im ersten
                     Schritt wird der Datei, welche die Beispielevents enthält (sampleEvents.xml) ein
                     Stylesheet zugeordnet, das diese Events absteigend nach Datum und Startzeitpunkt
                     sortiert (sampleEvents.xsl). Das Ergebnis ist eine XML-Datei mit den sortierten
@@ -105,7 +105,7 @@
                     die Monatssicht aufgerufen (tagessicht.xsl, wochensicht.xls,
                     monatssicht.xsl).</para>
                 <para>Nachfolgender Programmcode zeigt beispielhaft, wie die Events aus der
-                    sortierten Zwischendatei gefiltert und jweils als Rechteck, dessen Höhe von der
+                    sortierten Zwischendatei gefiltert und jeweils als Rechteck, dessen Höhe von der
                     Dauer des Events abhängt, in das oben beschriebene SVG-Template der Tagessicht
                     hineingezeichnet werden. <programlisting><![CDATA[<xsl:template match="/">
         <svg  height="200%" width="100%">
@@ -150,7 +150,7 @@
     </xsl:template>]]></programlisting>
                 </para>
                 <para> Das Ergebnis enthält nun das Datum des aktuellen Tages, das Template der
-                    Tagessicht und die Rechtecke für die Events an dem betrechteten Tag. Folgendes
+                    Tagessicht und die Rechtecke für die Events an dem betrachteten Tag. Folgendes
                     Bild zeigt die Tagessicht nach der XSL Transformation: <figure>
                         <title>Template Tagessicht</title>
                         <mediaobject>
@@ -169,11 +169,11 @@
                 <title>Wiederverwendung der Templates</title>
                 <para>Bei der Erstellung der Templates wurde darauf geachtet, dass sie nicht nur für
                     eine Sicht verwendet werden können, sondern auch für die Erstellung der anderen Sichten brauchbar sind.</para>
-                <para>Mit Hilfe des Befehls <![CDATA[<xsl:include href="tagessicht.xsl"/>]]> wird das
-                    Stylesheet der Tagessicht, dessen Template in der Wochensicht benötigt wird, in
-                    diese mit eingebunden. Genauso wird in der Monatssicht das Stylesheet der
+                <para>Mit Hilfe des Befehls <![CDATA[<xsl:include href="tagessicht.xsl"/>]]> wird
+                    das Stylesheet der Tagessicht, dessen Template in der Wochensicht benötigt wird,
+                    in diese mit eingebunden. Genauso wird in der Monatssicht das Stylesheet der
                     Tagessicht eingebunden. Mit Hilfe des Befehls
-                    <![CDATA[ <xsl:call-template name="tagessicht"/>]]> können einzelene Templates
+                    <![CDATA[ <xsl:call-template name="tagessicht"/>]]> können einzelne Templates
                     aufgerufen werden. </para>
             </sect2>
             <sect2>
@@ -208,25 +208,34 @@
             <para>Services, umgesetzt mit XQuery und XSLT</para>
             <sect2>
                 <title> XProc </title>
-            <para> An der Server-Seite wirden die Kunden-Anfragen einen XProc-Prozess auslösen, bei dem 
-            das angegebene Datum als Element im XML-Dokument <emphasis>aktuellesDatum.xml</emphasis> gespeichert und mit Schema 
-            <emphasis>aktuellesDatum.xsd</emphasis> validiert wird.</para>
-            <para>Als nächstes, wird das XML-Dokument sampleCalendarX.xml durch Validate-XQuery-XSLT-Pipe transformiert . 
+            <para> An der Server-Seite werden die Kunden-Anfragen einen XProc-Prozess auslösen, bei
+                    dem das angegebene Datum als Element im XML-Dokument
+                    <![CDATA[aktuellesDatum.xml]]> gespeichert und mit Schema
+                    <![CDATA[aktuellesDatum.xsd]]> validiert wird.</para>
+            <para>Als nächstes, wird das XML-Dokument <![CDATA[sampleCalendarX.xml]]> durch Validate-XQuery-XSLT-Pipe transformiert . 
             Als Output erhalten wir entsprechenden Browser-Sicht.</para>
-            <para>XProc erlaubt es, Workflow zu automatisieren und veranschaulichen. Darüber hinaus, bei Benutzung von XProc
-            wird die Architektur (welche Operationen wann passieren) von den eigentlichen Code für diesen Operationen (wie sie ausgeführt werden)
-            getrennt: Separation of Concerns.</para>
-            <para> Der Pipe-Prozess läuft folgendermaßen ab. 
-            Als erstes wird<emphasis>sampleCalendarX.xml</emphasis>  mit Schema <emphasis>CalendarX.xsd </emphasis>validiert. Dann wird Kunden-Anfrage getestet:
-            ob Tages-, Wochen- oder Monatsevents gefragt wurde. Dies erfolgt via <emphasis>p:choose</emphasis> step, wobei eine Verzweigung von drei Optionen
-            entsteht. Jede Option löst eine eigene Subpipe aus. Wenn die Option "Tag" gewählt wurde, geht das validierte Dokument
-            <emphasis>sampleCalendarX.xml</emphasis> in die "Tag"-Subpipe als Input. Dort erfolgt zunächst
-            Xquery mit <emphasis>getforDate.xquery</emphasis> und danach wird Kalendersicht im Browser mit <emphasis>tagessicht.xsl</emphasis> erzeugt.
-            Für die Option "Monat" erfolgt Xquery mit <emphasis>getforMonth.xquery</emphasis> und danach die Transformation mit
-            <emphasis>monatssicht.xsl</emphasis>. Die "Woche"-Subpipe funktioniert genau so mit <emphasis>getforWeek.xquery</emphasis>
-            und <emphasis>wochensicht.xsl</emphasis>
-            </para>
-            <para>Output für alle drei Subprozesse wird der in Browser angezeigte Kalendersicht.</para>
+            <para>XProc erlaubt es, Workflow zu automatisieren und veranschaulichen. Darüber hinaus,
+                    bei Benutzung von XProc wird die Architektur (welche Operationen wann passieren)
+                    von den eigentlichen Code für diesen Operationen (wie sie ausgeführt werden)
+                    getrennt: Separation of Concerns. Eine Integration von unterschiedlichen
+                    Technologien (XQuery, XSLT, etc.)  innerhalb von XProc ist auch nicht zu
+                    unterschätzen.</para>
+            <para> Der Pipe-Prozess läuft folgendermaßen ab. Als erstes
+                        wird <![CDATA[sampleCalendarX.xml]]> mit Schema
+                        <![CDATA[CalendarX.xsd]]> validiert. Dann wird Kunden-Anfrage
+                    getestet: ob Tages-, Wochen- oder Monats-Events gefragt wurde. Dies erfolgt via
+                        <![CDATA[p:choose]]> step, wobei eine Verzweigung von drei Optionen
+                    entsteht. Jede Option löst eine eigene Subpipe aus. Wenn die Option "Tag"
+                    gewählt wurde, geht das validierte Dokument
+                        <![CDATA[sampleCalendarX.xml]]> in die "Tag"-Subpipe als Input.
+                    Dort erfolgt zunächst XQuery mit <![CDATA[getforDate.xquery]]> und
+                    danach wird Kalendersicht im Browser mit <![CDATA[tagessicht.xsl]]>
+                    erzeugt. Für die Option "Monat" erfolgt XQuery mit
+                        <![CDATA[getforMonth.xquery]]> und danach die Transformation mit
+                        <![CDATA[monatssicht.xsl]]>. Die "Woche"-Subpipe funktioniert genau
+                    so mit<![CDATA[getforWeek.xquery]]> und <![CDATA[wochensicht.xsl]]>
+                </para>
+            <para>Output für alle drei Subprozesse wird der in Browser angezeigte Kalendersicht</para>
             </sect2>
         <sect2><title> XQuery </title>
             <para> Client hat die Möglichkeit, für ein von ihm auserwähltes Datum drei unterschiedliche Anfragen an DB zu stellen: 
@@ -241,23 +250,150 @@
                     <para>Events für einen Kalendermonat, inklusive dieses Datum</para>
                 </listitem>
             </itemizedlist></para>
-            <sect3><title>Module</title>
-            <para>Um Durchblick zu bewähren haben wir die Queries in folgenden Module aufgeteilt:
-                <itemizedlist>
-                    <listitem>
-                        <para>FunctX - Module</para>
-                        <para> Das ist eine Sammlung von den FunctX-funktionen, die andere Module benutzen.
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>Is Date in Pattern (Hilfsfunktionen)- Module</para>
-                    </listitem>
-                    <listitem>
-                        <para>Eigentliche getrennte Queries für Tag, Woche und Monat</para>
-                    </listitem>
-                </itemizedlist></para>
-            </sect3>
-        </sect2>
+                <para>Module:</para>
+                <para>Um Durchblick und Wiederverwendung von den Hilfsfunktionen zu gewährleisten,
+                    haben wir die Queries in die folgenden Module aufgeteilt: <itemizedlist>
+                        <listitem>
+                            <para><![CDATA[functX.xquery]]> - Module</para>
+                            <para> Das ist eine Sammlung von den FunctX-funktionen, die andere
+                                Hilfsfunktionen benutzen. Hauptsächlich sind diese Zeit-verbundenen
+                                Funktionen, die in XSLT-Abschnitt bereits besprochen wurden. </para>
+                        </listitem>
+                        <listitem>
+                            <para><![CDATA[isinPat.xquery]]> (Hilfsfunktionen)- Module</para>
+                            <para>Eine Sammlung von den aneinanderabhängigen Funktionen.</para>
+                        </listitem>
+                    </itemizedlist></para>
+            <para>
+                    <table frame="all">
+                        <title>Event XQueries Summary</title>
+                        <tgroup cols="4">
+                            <colspec colname="newCol1" colnum="1" colwidth="142px"/>
+                            <colspec colname="c1" colnum="2" colwidth="160px"/>
+                            <colspec colname="c2" colnum="3" colwidth="264px"/>
+                            <colspec colname="c3" colnum="4" colwidth="297px"/>
+                            <thead>
+                                <row>
+                                    <entry><emphasis role="italic">Events</emphasis></entry>
+                                    <entry>Day Events</entry>
+                                    <entry>Week Events</entry>
+                                    <entry>Month Events</entry>
+                                </row>
+                            </thead>
+                            <tbody>
+                                <row>
+                                    <entry><emphasis role="italic">Main <![CDATA[.xquery]]>
+                                            file</emphasis></entry>
+                                    <entry><![CDATA[getforDate.xquery]]></entry>
+                                    <entry><![CDATA[getforWeek.xquery]]></entry>
+                                    <entry><![CDATA[getforMonth.xquery]]></entry>
+                                </row>
+                                <row>
+                                    <entry><emphasis role="italic">additional modules
+                                            used</emphasis></entry>
+                                    <entry>
+                                        <itemizedlist>
+                                            <listitem>
+                                                <para><![CDATA[isinPat.xquery]]></para>
+                                            </listitem>
+                                            <listitem>
+                                                <para><![CDATA[functX.xquery]]></para>
+                                            </listitem>
+                                        </itemizedlist>
+                                    </entry>
+                                    <entry>
+                                        <itemizedlist>
+                                            <listitem>
+                                                <para><![CDATA[isinPat.xquery]]></para>
+                                            </listitem>
+                                            <listitem>
+                                                <para><![CDATA[functX.xquery]]></para>
+                                            </listitem>
+                                        </itemizedlist>
+                                    </entry>
+                                    <entry>
+                                        <itemizedlist>
+                                            <listitem>
+                                                <para><![CDATA[isinPat.xquery]]></para>
+                                            </listitem>
+                                            <listitem>
+                                                <para><![CDATA[functX.xquery]]></para>
+                                            </listitem>
+                                        </itemizedlist>
+                                    </entry>
+                                </row>
+                                <row>
+                                    <entry><emphasis role="italic">specific declared auxiliary
+                                            functions</emphasis></entry>
+                                    <entry> none</entry>
+                                    <entry>
+                                        <itemizedlist>
+                                            <listitem>
+                                                <para><![CDATA[w:getEventsForWeek($d, $i)]]></para>
+                                            </listitem>
+                                            <listitem>
+                                                <para><![CDATA[w:getEvents ($d as xs:date?, ]]></para>
+                                                <para>
+                                                  <![CDATA[$i as xs:integer)]]>
+                                                </para>
+                                            </listitem>
+                                        </itemizedlist>
+                                    </entry>
+                                    <entry>
+                                        <itemizedlist>
+                                            <listitem>
+                                                <para><![CDATA[m:getEventsForMonth ($d, $i, $j)]]></para>
+                                            </listitem>
+                                            <listitem>
+                                                <para><![CDATA[m:getEvents ($d as xs:date?, ]]></para>
+                                                <para>
+                                                  <![CDATA[$i as xs:date, $j as xs:date)]]></para>
+                                            </listitem>
+                                        </itemizedlist>
+                                    </entry>
+                                </row>
+                            </tbody>
+                        </tgroup>
+                    </table>
+                </para>      
+         <para><emphasis role="bold">Module<![CDATA[isinPat.xquery]]></emphasis></para>  
+                <para>Am Ende, die Hilfsfunktion, die von den Day-, Week- und Month-XQueries benutzt wird is <![CDATA[local:forDay ($d)]]>
+                                    Funktion. Sie erzeugt eine XML-Datei, die als Root-Element <![CDATA[<events>]]> hat,
+                                    mit dem "date" Attribute, das das Datum zeigt. Darin enhalten sind <![CDATA[<event>]]>Elemente.
+                                </para>
+                <para><inlinemediaobject>
+                        <imageobject>
+                            <imagedata scalefit="1" width="70%" contentdepth="70%" fileref="Images/isinPat.png"/>
+                        </imageobject>
+                    </inlinemediaobject></para>
+
+            
+<para><emphasis role="bold">Eigentliche getrennte Queries für Tag, Woche und Monat</emphasis></para>
+<para><programlisting><![CDATA[<?xml version="1.0" encoding="UTF-8"?>
+<events date="2015-06-16">
+   <event>
+      <datum>2015-06-16</datum>
+      <datumWochenTag>2</datumWochenTag>
+      <datumJahresTag>167</datumJahresTag>
+      <startZeit>12:15:00</startZeit>
+      <startZeitInMin>735</startZeitInMin>
+      <endZeit>13:45:00</endZeit>
+      <endZeitInMin>825</endZeitInMin>
+      <beschreibung>test 2nd event in day</beschreibung>
+      <tagZuvor>2015-06-15</tagZuvor>
+      <tagDanach>2015-06-17</tagDanach>
+      <location>00.09.13A</location>
+      <attendees>
+         <attendee>Anne Brüggemann-Klein</attendee>
+      </attendees>
+   </event>
+   <event>
+ ...
+   </event>
+</events>]]>
+<remark>Ergebnis von <![CDATA[getforDay.xquery]]></remark></programlisting></para>
+
+          </sect2>
         </sect1>
     </chapter>
     <chapter>
