@@ -44,6 +44,17 @@
 						</eventRule>
 					</eventRules>
 				</superEvent>
+				<superEvent description="test2" categories="teaching">
+					<eventRules>
+						<eventRule description="another test for 2nd event in day" startTime="08:15:00" endTime="10:45:00" note="">
+							<recurrencePattern>test2</recurrencePattern>
+							<attendees>
+								<attendee>Anne Brüggemann-Klein</attendee>
+							</attendees>
+							<location>00.09.13A</location>
+						</eventRule>
+					</eventRules>
+				</superEvent>
 			</superEvents>
 		</calendar>
 	</calendars>
@@ -70,6 +81,7 @@
 		<dailyPattern description="Fronleichnam" startDate="2015-06-04" endDate="2015-06-04"/>
 		<dailyPattern description="S2015" startDate="2015-04-13" endDate="2015-07-17"></dailyPattern>
 		<dailyPattern description="test" startDate="2015-06-16" endDate="2015-06-16"></dailyPattern>
+		<dailyPattern description="test2" startDate="2015-07-13" endDate="2015-07-13"/>
 		<weeklyPattern  description="mondays" dayOfWeek="Monday"/>
 		<weeklyPattern  description="tuesdays" dayOfWeek="Tuesday"/>
 		<weeklyPattern description="thursdays" dayOfWeek="Thursday"/>

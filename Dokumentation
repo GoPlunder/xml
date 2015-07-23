@@ -220,20 +220,18 @@
                     getrennt: Separation of Concerns. Eine Integration von unterschiedlichen
                     Technologien (XQuery, XSLT, etc.)  innerhalb von XProc ist auch nicht zu
                     unterschätzen.</para>
-            <para> Der Pipe-Prozess läuft folgendermaßen ab. Als erstes
-                        wird <![CDATA[sampleCalendarX.xml]]> mit Schema
-                        <![CDATA[CalendarX.xsd]]> validiert. Dann wird Kunden-Anfrage
-                    getestet: ob Tages-, Wochen- oder Monats-Events gefragt wurde. Dies erfolgt via
-                        <![CDATA[p:choose]]> step, wobei eine Verzweigung von drei Optionen
-                    entsteht. Jede Option löst eine eigene Subpipe aus. Wenn die Option "Tag"
-                    gewählt wurde, geht das validierte Dokument
-                        <![CDATA[sampleCalendarX.xml]]> in die "Tag"-Subpipe als Input.
-                    Dort erfolgt zunächst XQuery mit <![CDATA[getforDate.xquery]]> und
-                    danach wird Kalendersicht im Browser mit <![CDATA[tagessicht.xsl]]>
-                    erzeugt. Für die Option "Monat" erfolgt XQuery mit
-                        <![CDATA[getforMonth.xquery]]> und danach die Transformation mit
-                        <![CDATA[monatssicht.xsl]]>. Die "Woche"-Subpipe funktioniert genau
-                    so mit<![CDATA[getforWeek.xquery]]> und <![CDATA[wochensicht.xsl]]>
+            <para> Der Pipe-Prozess läuft folgendermaßen ab. Als erstes Step, wird
+                    <![CDATA[sampleCalendarX.xml]]> mit dem Schema <![CDATA[CalendarX.xsd]]>
+                    validiert. Dann wird Kunden-Anfrage getestet: ob Tages-, Wochen- oder
+                    Monats-Events gefragt wurde. Dies erfolgt via <![CDATA[p:choose]]> step, wobei
+                    eine Verzweigung von drei Optionen entsteht. Jede Option löst eine eigene
+                    Subpipe aus. Wenn die Option "Tag" gewählt wurde, geht das validierte Dokument
+                    <![CDATA[sampleCalendarX.xml]]> in die "Tag"-Subpipe als Input. Dort erfolgt
+                    zunächst XQuery mit <![CDATA[getforDate.xquery]]> und danach wird Kalendersicht
+                    im Browser mit <![CDATA[tagessicht.xsl]]> erzeugt. Für die Option "Monat"
+                    erfolgt XQuery mit <![CDATA[getforMonth.xquery]]> und danach die Transformation
+                    mit <![CDATA[monatssicht.xsl]]>. Die "Woche"-Subpipe funktioniert genau so
+                    mit<![CDATA[getforWeek.xquery]]> und <![CDATA[wochensicht.xsl]]>
                 </para>
             <para>Output für alle drei Subprozesse wird der in Browser angezeigte Kalendersicht</para>
             </sect2>
