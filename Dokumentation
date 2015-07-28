@@ -33,11 +33,10 @@
         <title>Das Kalender-System CalendarX</title>
     <sect1>
             <title>Die XRX-Architektur</title>            
-         <para><figure><title>CalendarX Layer Structure</title>
+         <para><figure><title>CalendarX Component Layer Structure</title>
                 <mediaobject>
-                   <imageobject role="fo">
-                        <imagedata scalefit="1" width="80%" contentdepth="80%"
-                            format="PDF" fileref="Images/Architecture.png"/>
+                   <imageobject>
+                        <imagedata fileref="Images/Architecture.png" scale="80"/>
                     </imageobject>
                 </mediaobject>
             </figure></para>
@@ -205,35 +204,69 @@
         </sect1>
         <sect1>
             <title>Server-Komponente</title>
-            <para>Services, umgesetzt mit XQuery und XSLT</para>
+            <para>Folgende Technologien werden benutzt: XQuery, XSLT und XProc.</para>
             <sect2>
                 <title> XProc </title>
             <para> An der Server-Seite werden die Kunden-Anfragen einen XProc-Prozess auslösen, bei
                     dem das angegebene Datum als Element im XML-Dokument
                     <![CDATA[aktuellesDatum.xml]]> gespeichert und mit Schema
                     <![CDATA[aktuellesDatum.xsd]]> validiert wird.</para>
-            <para>Als nächstes, wird das XML-Dokument <![CDATA[sampleCalendarX.xml]]> durch Validate-XQuery-XSLT-Pipe transformiert . 
-            Als Output erhalten wir entsprechenden Browser-Sicht.</para>
-            <para>XProc erlaubt es, Workflow zu automatisieren und veranschaulichen. Darüber hinaus,
-                    bei Benutzung von XProc wird die Architektur (welche Operationen wann passieren)
-                    von den eigentlichen Code für diesen Operationen (wie sie ausgeführt werden)
-                    getrennt: Separation of Concerns. Eine Integration von unterschiedlichen
-                    Technologien (XQuery, XSLT, etc.)  innerhalb von XProc ist auch nicht zu
+            <para>Als nächstes, wird das XML-Dokument <![CDATA[sampleCalendarX.xml]]> durch
+                    XQuery-XSLT-Pipe transformiert . Als Output erhalten wir entsprechenden
+                    Browser-Sicht. XProc erlaubt es, Workflow zu automatisieren und
+                    veranschaulichen.</para>
+                <para>Bemerkung: In der eXist-Umgebung gibt es die Möglichkeit, diesen Prozess
+                    mithilfe von Funktion transform:transform innerhalb von XQuery durchzuführen, wo
+                    man ein Dokument, ein Stylesheet und die Transformationsparameter als Argumente
+                    eingibt, und das Ergebnis bekommt. Wir haben uns dennoch letztendlich für XProc
+                    entschieden, und zwar aus folgenden Gründen.</para>
+                <para> Erstens, ist die Unterstützung von dieser Funktion in eXist noch nicht ganz
+                    ausgereift, was Fehlermeldungen bedeutet.  (Dasselbe gilt übrigens auch für
+                    XProc-Module in eXide). Darüber hinaus, wird bei der Benutzung von XProc die
+                    Architektur (<emphasis role="italic">welche</emphasis> Operationen <emphasis
+                        role="italic">wann</emphasis> passieren) von den eigentlichen Code für
+                    diesen Operationen (<emphasis role="italic">wie</emphasis> sie ausgeführt
+                    werden) getrennt: Separation of Concerns. Eine Integration von unterschiedlichen
+                    Technologien (XQuery, XSLT, etc.) innerhalb von XProc ist auch nicht zu
                     unterschätzen.</para>
-            <para> Der Pipe-Prozess läuft folgendermaßen ab. Als erstes Step, wird
-                    <![CDATA[sampleCalendarX.xml]]> mit dem Schema <![CDATA[CalendarX.xsd]]>
-                    validiert. Dann wird Kunden-Anfrage getestet: ob Tages-, Wochen- oder
-                    Monats-Events gefragt wurde. Dies erfolgt via <![CDATA[p:choose]]> step, wobei
-                    eine Verzweigung von drei Optionen entsteht. Jede Option löst eine eigene
-                    Subpipe aus. Wenn die Option "Tag" gewählt wurde, geht das validierte Dokument
-                    <![CDATA[sampleCalendarX.xml]]> in die "Tag"-Subpipe als Input. Dort erfolgt
-                    zunächst XQuery mit <![CDATA[getforDate.xquery]]> und danach wird Kalendersicht
-                    im Browser mit <![CDATA[tagessicht.xsl]]> erzeugt. Für die Option "Monat"
-                    erfolgt XQuery mit <![CDATA[getforMonth.xquery]]> und danach die Transformation
-                    mit <![CDATA[monatssicht.xsl]]>. Die "Woche"-Subpipe funktioniert genau so
-                    mit<![CDATA[getforWeek.xquery]]> und <![CDATA[wochensicht.xsl]]>
+                <para>Um XProc durchführen zu können, mussten wir alle XQueries, die wir als Version
+                    3.0 geschrieben haben, als Version 1.0 umzuschreiben. Saxon akzeptiert Version
+                    3.0 nicht, auch wenn sie explizit erlaubt wurde. Es gibt auch angeblich keine
+                    Pläne, 3.0 in der Zukunft als Default-Version zu setzen. Saxon im Calabash nehme
+                    sie als nicht ausgereift genug dafür  an, so Oxygen-Webseite. Die Umstellung
+                    lief ganz problemlos: Außer einer filter-Funktion, waren alle von uns
+                    deklarierten Funktionen mit Version 1.0 völlig kompatibel.</para>
+            <para>Der Pipe-Prozess läuft nach der Datumsvalidierung folgendermaßen ab. Als Input
+                    kommt das Dokument <![CDATA[sampleCalendarX.xml]]> rein. Dann wird
+                    Kunden-Anfrage getestet: ob Tages-, Wochen- oder Monats-Events gefragt wurde.
+                    Dies erfolgt via <![CDATA[p:choose]]> step, wobei eine Verzweigung von drei
+                    Optionen entsteht. Jede Option löst eine eigene Subpipe aus, wobei in jeder
+                    Subpipe das XML-Dokument <![CDATA[sampleCalendarX.xml]]> als Input reingeht.
+                    Wenn die Option "Tag" gewählt wurde,  erfolgt auf Input zunächst XQuery mit
+                    <![CDATA[getforDate.xquery]]>. Dieser Step erzeugt als Output eine
+                    XML-Zwischendatei dayEvents.xml, welche eine geordnete Sequenz von Events an
+                    diesem Tag darstellt. Sie geht als Input in den XSLT-Transformation-Step. Dort
+                    wird Kalendersicht im Browser mithilfe von <![CDATA[tagessicht.xsl]]> erzeugt.
+                    Dabei wird als sekundäres Output eine Zwischendatei dayEvents.html gespeichert.
+                    Für die Option "Monat" erfolgt XQuery mit <![CDATA[getforMonth.xquery]]> und
+                    danach die Transformation mit <![CDATA[monatssicht.xsl]]>. Die "Woche"-Subpipe
+                    funktioniert genau so mit<![CDATA[getforWeek.xquery]]> und
+                    <![CDATA[wochensicht.xsl]]>
                 </para>
-            <para>Output für alle drei Subprozesse wird der in Browser angezeigte Kalendersicht</para>
+            <para>Output für alle drei Subprozesse wird der in Browser angezeigte Kalendersicht.</para>
+                <figure>
+                    <title>EPK: XProc-Prozess</title>
+                    <mediaobject>
+                        <imageobject>
+                             <imagedata fileref="Images/XProcProzess.png" scale="70"/> 
+                        </imageobject>
+                    </mediaobject>
+                </figure>
+    
+                <para>Ein anderer Prozess wird bei der Events-Änderung ausgelöst. Die Änderung wird
+                    durchgeführt und in Datenbank gespeichert,  am Ende wird
+                    <![CDATA[sampleCalendarX.xml]]> mit dem Schema <![CDATA[CalendarX.xsd]]>
+                    validiert.</para>
             </sect2>
         <sect2><title> XQuery </title>
             <para> Client hat die Möglichkeit, für ein von ihm auserwähltes Datum drei unterschiedliche Anfragen an DB zu stellen: 
@@ -248,7 +281,7 @@
                     <para>Events für einen Kalendermonat, inklusive dieses Datum</para>
                 </listitem>
             </itemizedlist></para>
-                <para>Module:</para>
+                <para><emphasis role="underline">Module:</emphasis></para>
                 <para>Um Durchblick und Wiederverwendung von den Hilfsfunktionen zu gewährleisten,
                     haben wir die Queries in die folgenden Module aufgeteilt: <itemizedlist>
                         <listitem>
@@ -354,19 +387,27 @@
                         </tgroup>
                     </table>
                 </para>      
-         <para><emphasis role="bold">Module<![CDATA[isinPat.xquery]]></emphasis></para>  
-                <para>Am Ende, die Hilfsfunktion, die von den Day-, Week- und Month-XQueries benutzt wird is <![CDATA[local:forDay ($d)]]>
-                                    Funktion. Sie erzeugt eine XML-Datei, die als Root-Element <![CDATA[<events>]]> hat,
-                                    mit dem "date" Attribute, das das Datum zeigt. Darin enhalten sind <![CDATA[<event>]]>Elemente.
-                                </para>
+         <para><emphasis role="bold">Modul<![CDATA[isinPat.xquery]]>und Queries für Tag, Woche und
+                        Monat</emphasis></para>  
+                <para>Die einzige Hilfsfunktion aus dem "isinPat"-Modul, die von den Day-, Week- und
+                    Month-XQueries direkt benutzt wird, ist <emphasis role="italic">
+                        <![CDATA[local:forDay ($d)]]>
+                    </emphasis>Funktion. . </para>
+                <para>Folgendes Diagramm zeigt den Zusammenspiel von unterschiedlichen Funktionen
+                    innerhalb des "isinPat"-Moduls, sowie mit den externen Module und Queries. </para>
                 <para><inlinemediaobject>
                         <imageobject>
                             <imagedata scalefit="1" width="70%" contentdepth="70%" fileref="Images/isinPat.png"/>
                         </imageobject>
                     </inlinemediaobject></para>
-
-            
-<para><emphasis role="bold">Eigentliche getrennte Queries für Tag, Woche und Monat</emphasis></para>
+                <para>XQuery für die Events an dem Tag heißt <emphasis role="italic"><emphasis
+                            role="bold">"getforDate.xquery"</emphasis></emphasis>. XQuery <emphasis
+                        role="italic">"getforDate"</emphasis> setzt als Argument das von dem Client
+                    angegebene Datum und ruft die Funktion <![CDATA[local:forDay($d)]]> aus dem
+                    "isinPat"-Modul. Diese erzeugt als Ergebnis eine XML-Datei, welche Root-Element
+                    <![CDATA[<events>]]> mit einem Attribute "date" - das Datum, hat . Darin
+                    enthalten sind <![CDATA[<event>]]>Elemente - alle Events, die an diesem Datum
+                    stattfinden</para>
 <para><programlisting><![CDATA[<?xml version="1.0" encoding="UTF-8"?>
 <events date="2015-06-16">
    <event>
@@ -389,7 +430,84 @@
  ...
    </event>
 </events>]]>
-<remark>Ergebnis von <![CDATA[getforDay.xquery]]></remark></programlisting></para>
+<remark>Ergebnis von <![CDATA[getforDate.xquery]]></remark></programlisting></para>
+<para> </para>
+                <para>Die XQuery <emphasis role="italic"><emphasis role="bold"
+                            >"getforWeek.xquery"</emphasis></emphasis> prüft, an welchem Tag der
+                    Woche das gesuchte Datum stattfindet und ruft die
+                    Hilfsfunktion<![CDATA[w:getEventsForWeek($d, $i)]]> auf, wo $i - Nummer des
+                    Wochentages ist. Falls das Datum am Montag vorkommt, ruft die Funktion für
+                    dieses Datum die Funktion <![CDATA[local:forDay($d)]]> aus dem "isinPat"-Modul.
+                    Für den nächsten Tag, ruft sie die zweite Hilfsfunktion "w:getEvents". Falls das
+                    Datum an einem anderen Wochentag vorkommt, ruft die Funktion sich selbst
+                    rekursiv für den vorigen Tag auf, usw. bis sie zum Montag dieser Woche
+                    kommt.</para>
+                <para>Die Funktion <![CDATA[w:getEvents($d, $i)]]> ruft <![CDATA[local:forDay($d)]]>
+                    aus dem "isinPat"-Modul auf und für den nächsten Tag ruft sie sich selbst auf.
+                    Usw. bis sie zum Ende der Woche kommt. Somit entsteht eine Sequenz von den
+                    Events für jeden Tag der Woche, die das gesuchte Datum enthält. Das ganze wird
+                    unter &lt;events> Root-Element verpackt.</para>
+                <para>Ähnlich verhält sich auch <emphasis role="italic"><emphasis role="bold"
+                            >"getforMonth.xquery"</emphasis></emphasis>, mit Monatsevents als
+                    Ergebnis.</para>
+                <para><emphasis role="underline">Was passiert innerhalb von
+                        "isinPat"-Modul</emphasis> eher das Ergebnis geliefert wird?</para>
+                <para>Als Erstes, ruft die Funktion <emphasis role="italic"
+                        >local:forDay($d)</emphasis> die Funktion<emphasis role="italic">
+                        <![CDATA[local:getEventsForDay ($d as xs:date?)]]></emphasis>. Diese muss
+                    eine Sequenz ohne Root-Element von allen an diesem Tag stattfindenden Events ,
+                    als "eventRule" mit allen dazugehörigen Attribute und Unterelemente, liefern-
+                    genauso, wie sie im sampleCalendarX.xml erscheinen.</para>
+                <para>Um diese Sequenz zu bekommen, geht die Funktion<emphasis role="italic">
+                        <![CDATA[local:getEventsForDay ($d as xs:date?)]]></emphasis> durch alle im
+                    sampleCalendarX.xml gespeicherte Events (als "eventRule") und prüft deren
+                    "recurrencePattern"-Unterelement mithilfe von Funktion <emphasis role="italic"
+                        ><![CDATA[local:isDateInPattern ($d as xs:date, $p as xs:string?)]]></emphasis>
+                    :</para>
+                <para>Diese Funktion nimmt das Datum und den Patternnamen von "recurrencePattern"
+                    als Argumente und liefert eine boolische Antwort, ob an diesem Datum dieses
+                    Pattern stattfindet. </para>
+                <para>Weil "recurrencePattern" ausschließlich einen Namen hat, ohne Verweise auf
+                    Datum oder Pattern-type, muss die Funktion alle unter &lt;patterns> gespeicherte
+                    Patterns durchgehen, bis sie den gesuchten Pattern findet und ihn dann bzgl. des
+                    Datums prüft.</para>
+                <para><programlisting><![CDATA[ declare function local:isDateInPattern ($d as xs:date, $p as xs:string?) as xs:boolean
+ {
+ ((local:isInDaily($d, $p)) or (local:isInWeekly($d,$p))  or (local:isInUnion($d,$p)) or (local:isInIntersection($d,$p))or (local:isInDifference($d,$p)))
+ };]]></programlisting></para>
+                <para>Es gibt 2 einfache und 3 komplexe Patterns, die in Frage kommen. Für jeden
+                    Pattern gibt es eine entsprechende Funktion: "isinDaily", "isinWeekly",
+                    "isinDifference", isinUnion" und "isinIntersection". </para>
+                <para>Die simple Patterns sind "daily" und "weekly" Patterns. Bei jedem
+                    "daily"-Pattern genügt es, Attribute "startDate" und "endDate" als Argumente der
+                    <![CDATA[functx:between-inclusive ($d, $dp/@startDate ,$dp/@endDate)]]>
+                    übergeben und prüfen, ob das Datum zwischen Anfang und Ende des Patterns liegt.
+                    Bei dem "weekly" Pattern kommt die
+                    <![CDATA[(functx:day-of-week-name-en ($d) eq $wp/@dayOfWeek)]]> Funktion im
+                    Spiel, die prüft, an welchem Tag der Woche das gesuchte Datum vorkommt und ob
+                    dieser Tag dem "dayofWeek"-Attribut des Patterns entspricht.</para>
+                <para>"isinDifference", "isinUnion" und "isinIntersection" alle rufen die Funktion
+                        <emphasis role="italic"><![CDATA[local:isDateInPattern ]]></emphasis> für
+                    "firstPattern" und für jede "furtherPattern" rekursiv auf. Die Ergebnisse
+                    liefern true(), wenn:</para>
+<simplelist>
+<member> "isinDifference": das Datum befindet sich im "firstPattern" und in keinem der
+                        "furtherPatterns".</member>
+<member> "isinUnion": das Datum befindet sich im "firstPattern" oder in einem der
+                        "furtherPatterns".</member>
+                    <member>"isinIntersection":das Datum befindet sich im "firstPattern" und in
+                        jedem der "furtherPatterns".</member>   
+</simplelist>
+
+
+                <para>Die Gedanke hinter der Aufbau der Funktion <emphasis role="italic"
+                        ><![CDATA[local:isDateInPattern ]]></emphasis> war, dass weil XQuery eine
+                    funktionelle Sprache ist, wird die Funktion alle Pattern-Types nacheinander
+                    durchgehen ( als erstes alle daily, dann alle weekly Patterns, etc.), und,
+                    sobald der gesuchte Pattern zutrifft, Ergebnis liefern, ohne alle
+                    &lt;pattern>-Elemente durchgehen zu müssen. Das spart bei der Suche die Zeit und
+                    lässt auch den rekursiven Aufrufe die Antwort schneller zu bekommen.</para>
+                <para> </para>
 
           </sect2>
         </sect1>
