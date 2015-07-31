@@ -18,7 +18,7 @@
             
             <!-- Schreibe das Datum des Tages in die obere Mitte der Seite (festgelegt in aktuellesDatum.xml) -->
             <text x="600" y="25" text-anchor="middle" font-size="20" fill="red">
-                <xsl:value-of select="$aktuellesDatum"/>
+                <xsl:value-of select="format-date($aktuellesDatum,'[D01]/[M01]/[Y0001]')"/>
             </text>
             
             <!-- Falls vorhanden, trage die Termine für den Tag in das Template ein -->

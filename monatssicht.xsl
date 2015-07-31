@@ -59,18 +59,18 @@
             
             <xsl:if
                 test="datum = $wochentag and functx:day-of-week($wochentag) = 0 and $count &lt; $tageProMonat">
-                <rect x="{150*7-40}" y="{120+110*floor($count div 7)}" width="130" height="25"
+             <rect x="{150*7-40}" y="{120+110*floor($count div 7)}" width="130" height="25"
                     fill="gainsboro"/>
                 <text x="{150*7-40}" y="{120+110*floor($count div 7)+15}"><xsl:value-of select="beschreibung"/></text>
-                
             </xsl:if>
 
             <xsl:if
                 test="datum = $wochentag and $count &lt; $tageProMonat and functx:day-of-week($wochentag) > 0">
-                <rect x="{150*functx:day-of-week($wochentag)-40}"
+              <rect x="{150*functx:day-of-week($wochentag)-40}"
                     y="{120+110*floor((7-(functx:day-of-week($wochentag))+$count) div 7)}"
                     width="130" height="25" fill="gainsboro"/>
                 <text x="{150*functx:day-of-week($wochentag)-40}" y="{120+110*floor((7-(functx:day-of-week($wochentag))+$count) div 7)+15}"><xsl:value-of select="beschreibung"/></text>
+           
             </xsl:if>
                    
         </xsl:for-each>

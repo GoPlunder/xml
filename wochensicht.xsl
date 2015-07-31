@@ -128,7 +128,7 @@
             <!-- Der Sonntag muss extra behandelt werden -->
             <xsl:when test="$nummerAktuellerTag = 0 or $zaehler = 7 - $nummerAktuellerTag">
                 <text x="{150*7}" y="50">
-                    <xsl:value-of select="$betrachtetesDatum"/>
+                    <xsl:value-of select="format-date($betrachtetesDatum,'[D01]/[M01]/[Y0001]')" />
                 </text>
                 <xsl:call-template name="schreibeWochenTageVor">
                     <xsl:with-param name="betrachtetesDatum">
@@ -146,7 +146,7 @@
             <!-- Hier werden alle Tage NACH dem aktuellen Datum beschriftet -->
             <xsl:when test="$nummerAktuellerTag > 0 and $zaehler &lt; 7 - $nummerAktuellerTag">
                 <text x="{150*functx:day-of-week($betrachtetesDatum)}" y="50">
-                    <xsl:value-of select="$betrachtetesDatum"/>
+                    <xsl:value-of select="format-date($betrachtetesDatum,'[D01]/[M01]/[Y0001]')"/>
                 </text>
                 <xsl:call-template name="schreibeWochenTage">
                     <xsl:with-param name="betrachtetesDatum">
@@ -189,7 +189,7 @@
         <xsl:if
             test="$nummerAktuellerTag > 0 and $zaehler > 7 - $nummerAktuellerTag and $zaehler &lt; 7">
             <text x="{150*functx:day-of-week($betrachtetesDatum)}" y="50">
-                <xsl:value-of select="$betrachtetesDatum"/>
+                <xsl:value-of select="format-date($betrachtetesDatum,'[D01]/[M01]/[Y0001]')"/>
             </text>
 
             <xsl:call-template name="schreibeWochenTageVor">
