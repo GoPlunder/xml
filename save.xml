@@ -1,0 +1,29 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:ev="http://www.w3.org/2001/xml-events" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xf="http://www.w3.org/2002/xforms">
+    <head>
+        <title>Select the date</title>
+        <xf:model>
+            <xf:instance id="dsel">
+                <data xmlns="">
+                    <date-selected/>
+                </data>
+            </xf:instance>
+            
+            <xf:submission id="save" method="post" ref="date-selected" action="changeDatum.xquery" replace="instance"/>
+            
+            <xf:bind nodeset="date-selected" type="xs:date"/>
+            
+        </xf:model>
+    </head>
+    <body>
+        <p><h1>Select the date </h1>
+            <br/>
+            <xf:input ref="date-selected">
+                <xf:label>Enter a date: </xf:label>
+            </xf:input>
+            
+            <xf:submit submission="save">
+                <xf:label>Submit</xf:label>
+            </xf:submit>
+        </p>
+    </body>
+</html>
