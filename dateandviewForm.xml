@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:ev="http://www.w3.org/2001/xml-events" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xf="http://www.w3.org/2002/xforms">
+    <head>
+        <title>Select the date and the view</title>
+        <xf:model id="m1">
+            <xf:instance id="dsel">
+                <data xmlns="">
+                    <date-selected/>
+                </data>
+            </xf:instance>
+            <xf:submission id="save" method="post" ref="date-selected" resource="changeDatum.xquery" replace="instance"/>
+            <xf:bind nodeset="date-selected" type="xs:date"/>
+        </xf:model>
+        <xf:model id="m2">
+            <xf:instance>
+                <data xmlns="">
+                    <ViewSelected/>
+                </data>
+            </xf:instance>
+            <xf:submission id="subview" method="post" ref="ViewSelected" resource="getView.xq" replace="new"/>
+        </xf:model>
+    </head>
+    <body>
+        <p>
+            <h1>Search Calendar for Events</h1>
+            <br/>
+            <br/>
+            <h2>Select the date:</h2>
+            <br/>
+            <xf:input ref="date-selected" model="m1">
+                <xf:label>Enter Date: </xf:label>
+            </xf:input>
+            <xf:submit submission="save" model="m1">
+                <xf:label>Submit</xf:label>
+            </xf:submit>
+        </p>
+        <br/>
+        <br/>
+        <h2>Select view:</h2>
+        <br/>
+        <xf:select1 ref="ViewSelected" model="m2" appearance="minimal">
+            <xf:label>View of Events:</xf:label>
+            <xf:item>
+                <xf:label>Daily</xf:label>
+                <xf:value>day</xf:value>
+            </xf:item>
+            <xf:item>
+                <xf:label>Weekly</xf:label>
+                <xf:value>week</xf:value>
+            </xf:item>
+            <xf:item>
+                <xf:label>Monthly</xf:label>
+                <xf:value>month</xf:value>
+            </xf:item>
+        </xf:select1>
+        <br/>
+        <br/>
+        <xf:submit submission="subview" model="m2">
+            <xf:label>Show Events</xf:label>
+        </xf:submit>
+    </body>
+</html>
