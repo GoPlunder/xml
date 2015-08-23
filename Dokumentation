@@ -26,14 +26,14 @@
                 Kalenderfunktionen noch zusätzliche Kalenderfunktionen mit sich bringt. Diese können
                 folgendermaßen beschrieben werden.</para>
             <para><emphasis role="bold">Untersützung zusätzlicher Event-Typen
-                    (Superevents):</emphasis>CalendarX macht es möglich, Beziehungen zwischen Events
-                abzubilden, die keinem einzelnen Wiederholungsmuster enstprechen. So können nicht
-                nur sich wöchentlich oder monatlich wiederholende Events abgebildet werden, sondern
-                auch sich nach einem ganz anderen Muster wiederholende Events. Z.B. kann eine
-                Vorlesung, die wöchentlich Montags von 10 bis 12 Uhr und Mittwochs von 13 bis 15 Uhr
-                stattfindet, in einem einzelnen Event repräsentiert werden.</para>
+                    (Superevents):</emphasis> CalendarX macht es möglich, Beziehungen zwischen
+                Events abzubilden, die keinem einzelnen Wiederholungsmuster enstprechen. So können
+                nicht nur sich wöchentlich oder monatlich wiederholende Events abgebildet werden,
+                sondern auch sich nach einem ganz anderen Muster wiederholende Events. Z.B. kann
+                eine Vorlesung, die wöchentlich Montags von 10 bis 12 Uhr und Mittwochs von 13 bis
+                15 Uhr stattfindet, in einem einzelnen Event repräsentiert werden.</para>
             <para><emphasis role="bold">Unterstützung verschiedener Wiederholungs-Muster (reccurence
-                    patterns):</emphasis>CalendarX unterstützt die gewöhnlichen Wiederholungsmuster
+                    patterns):</emphasis> CalendarX unterstützt die gewöhnlichen Wiederholungsmuster
                 (täglich, wöchentlich, monatlich), aber auch die Kombination dieser
                 Wiederholungsmuster untereinander, einschließlich Ausnahmen. Z.B. kann CalendarX den
                 Fall repräsentieren, dass ein Event an jedem ersten Montag und jeden dritten
@@ -78,11 +78,7 @@
                     </imageobject>
                 </mediaobject>
             </figure></para>
-       </sect1>   
-        <sect1>
-            <title>XML Schema: Die Architektur von CalendarX</title>
-            <para>Das konzeptuelle Schema für Kalender-Daten</para>
-        </sect1>
+       </sect1>
         <sect1>
             <title>Umsetzung der Tages-, Wochen und Monatssicht</title>
             <sect2>
@@ -199,8 +195,7 @@
                                 <imagedata fileref="Images/tagessicht.png"/>
                             </imageobject>
                             <imageobject role="fo">
-                                <imagedata scalefit="1" width="100%" contentdepth="100%"
-                                    format="PDF" fileref="Images/tagessicht.png"/>
+                                <imagedata scalefit="1" width="100%" contentdepth="100%" format="PDF" fileref="Images/tagessicht.png"/>
                             </imageobject>
                         </mediaobject>
                     </figure>
@@ -229,7 +224,7 @@
             <sect2>
                 <title>Einbindung der FuncX Bibliothek</title>
                 <para>Für die Manipulation von Datums- und Zeitangaben wird die XSLT-Bibliothek FuncX 
-                    (<link xlink:href="http://www.xsltfunctions.com/"></link>) verwendet. Die Bibliothek wird v.a. dazu benötigt, um die
+                    (<link xlink:href="http://www.xsltfunctions.com/"/>) verwendet. Die Bibliothek wird v.a. dazu benötigt, um die
                     Wochen und Monate mit den richtigen Daten zu füllen. Mit Hilfe ihrer Funktionen können so
                     beispielsweise der erste Tag im Monat, die Anzahl der Tage eines Monats, die Nummer eines Tages im Jahr, u.v.m. bestimmt 
                     werden. </para>
@@ -237,12 +232,18 @@
         </sect1>
         <sect1>
             <title>Benutzeroberfläche</title>
-            <para>Beschreibung der unterstützen Seiten, den darauf angebotenen
-                Interaktionsmöglichkeiten und dem Layout, umgesetzt in XHTML, CSS und XForms</para>
-        </sect1>
-        <sect1>
-            <title>Protokoll zwischen Client und Server</title>
-            <para>HTTP-Nachrichten mit URLs und XML-Daten</para>
+            <para>Man kann auf der Startseite ein Datum und die gewünschte Sicht wählen. Zur Auswahl
+                stehen die Tages-, die Wochen- und die Monatssicht. In der jeweils ausgewählten
+                Sicht, werden alle vorhandenen Events angezeigt. Mit einem Klick auf ein Event, wird
+                zu einer neuen Seite gewechselt, wo alles Details des angeklickten Events in einem
+                HTML Formular angezeigt werden. Wenn man diese Daten ändert und auf speichern
+                klickt, kann man in der aktualisierten Sicht die Änderungen des Events sehen. Mit
+                CSS wurden Gestaltungsanweisungen erstellt, die mit HTML und XML (zum Beispiel bei
+                SVG) eingesetzt wurden. </para>
+            <para>XForms wurde verwendet, um die Unterstützung für Formulare in HTML bzw. dem
+                XML-basierten Nachfolger XHTML (zum Beispiel auf der „Events editieren Seite“) zu
+                ersetzen und mit der übrigen XML-Technologie zu verbinden.Die XForms Felder wurden
+                mit Hilfe von XQuery und XPath gefüllt.</para>
         </sect1>
         <sect1>
             <title>Server-Komponente</title>
@@ -265,8 +266,7 @@
                 <para> Erstens, ist die Unterstützung von dieser Funktion in eXist noch nicht ganz
                     ausgereift, was Fehlermeldungen bedeutet.  (Dasselbe gilt übrigens auch für
                     XProc-Module in eXide). Darüber hinaus, wird bei der Benutzung von XProc die
-                    Architektur (<emphasis role="italic">welche</emphasis> Operationen <emphasis
-                        role="italic">wann</emphasis> passieren) von den eigentlichen Code für
+                    Architektur (<emphasis role="italic">welche</emphasis> Operationen <emphasis role="italic">wann</emphasis> passieren) von den eigentlichen Code für
                     diesen Operationen (<emphasis role="italic">wie</emphasis> sie ausgeführt
                     werden) getrennt: Separation of Concerns. Eine Integration von unterschiedlichen
                     Technologien (XQuery, XSLT, etc.) innerhalb von XProc ist auch nicht zu
@@ -300,7 +300,7 @@
                     <title>EPK: XProc-Prozess</title>
                     <mediaobject>
                         <imageobject>
-                             <imagedata fileref="Images/XProcProzess.png" scale="70"/> 
+                            <imagedata fileref="Images/XProcProzess.png" scalefit="1" width="100%" contentdepth="100%" format="PDF"/> 
                         </imageobject>
                     </mediaobject>
                 </figure>
@@ -341,10 +341,10 @@
                     <table frame="all">
                         <title>Event XQueries Summary</title>
                         <tgroup cols="4">
-                            <colspec colname="newCol1" colnum="1" colwidth="142px"/>
-                            <colspec colname="c1" colnum="2" colwidth="160px"/>
-                            <colspec colname="c2" colnum="3" colwidth="264px"/>
-                            <colspec colname="c3" colnum="4" colwidth="297px"/>
+                            <colspec colname="newCol1" colnum="1" colwidth="120px"/>
+                            <colspec colname="c1" colnum="2" colwidth="140px"/>
+                            <colspec colname="c2" colnum="3" colwidth="200px"/>
+                            <colspec colname="c3" colnum="4" colwidth="200px"/>
                             <thead>
                                 <row>
                                     <entry><emphasis role="italic">Events</emphasis></entry>
@@ -405,8 +405,7 @@
                                                 <para><![CDATA[w:getEventsForWeek($d, $i)]]></para>
                                             </listitem>
                                             <listitem>
-                                                <para><![CDATA[w:getEvents ($d as xs:date?, ]]></para>
-                                                <para>
+                                                <para><![CDATA[w:getEvents($d as xs:date?,]]>
                                                   <![CDATA[$i as xs:integer)]]>
                                                 </para>
                                             </listitem>
@@ -415,12 +414,12 @@
                                     <entry>
                                         <itemizedlist>
                                             <listitem>
-                                                <para><![CDATA[m:getEventsForMonth ($d, $i, $j)]]></para>
+                                                <para><![CDATA[m:getEventsForMonth($d, $i, $j)]]></para>
                                             </listitem>
                                             <listitem>
-                                                <para><![CDATA[m:getEvents ($d as xs:date?, ]]></para>
-                                                <para>
-                                                  <![CDATA[$i as xs:date, $j as xs:date)]]></para>
+                                                <para><![CDATA[m:getEvents($d as xs:date?, ]]>
+                                                  <![CDATA[$i as xs:date, $j as xs:date)]]>
+                                                </para>
                                             </listitem>
                                         </itemizedlist>
                                     </entry>
@@ -439,12 +438,10 @@
                     innerhalb des "isinPat"-Moduls, sowie mit den externen Module und Queries. </para>
                 <para><inlinemediaobject>
                         <imageobject>
-                            <imagedata scalefit="1" width="70%" contentdepth="70%" fileref="Images/isinPat.png"/>
+                            <imagedata scalefit="1" width="100%" contentdepth="100%" format="PDF" fileref="Images/isinPat.png"/>
                         </imageobject>
                     </inlinemediaobject></para>
-                <para>XQuery für die Events an dem Tag heißt <emphasis role="italic"><emphasis
-                            role="bold">"getforDate.xquery"</emphasis></emphasis>. XQuery <emphasis
-                        role="italic">"getforDate"</emphasis> setzt als Argument das von dem Client
+                <para>XQuery für die Events an dem Tag heißt <emphasis role="italic"><emphasis role="bold">"getforDate.xquery"</emphasis></emphasis>. XQuery <emphasis role="italic">"getforDate"</emphasis> setzt als Argument das von dem Client
                     angegebene Datum und ruft die Funktion <![CDATA[local:forDay($d)]]> aus dem
                     "isinPat"-Modul. Diese erzeugt als Ergebnis eine XML-Datei, welche Root-Element
                     <![CDATA[<events>]]> mit einem Attribute "date" - das Datum, hat . Darin
@@ -474,8 +471,7 @@
 </events>]]>
 <remark>Ergebnis von <![CDATA[getforDate.xquery]]></remark></programlisting></para>
 <para> </para>
-                <para>Die XQuery <emphasis role="italic"><emphasis role="bold"
-                            >"getforWeek.xquery"</emphasis></emphasis> prüft, an welchem Tag der
+                <para>Die XQuery <emphasis role="italic"><emphasis role="bold">"getforWeek.xquery"</emphasis></emphasis> prüft, an welchem Tag der
                     Woche das gesuchte Datum stattfindet und ruft die
                     Hilfsfunktion<![CDATA[w:getEventsForWeek($d, $i)]]> auf, wo $i - Nummer des
                     Wochentages ist. Falls das Datum am Montag vorkommt, ruft die Funktion für
@@ -489,13 +485,11 @@
                     Usw. bis sie zum Ende der Woche kommt. Somit entsteht eine Sequenz von den
                     Events für jeden Tag der Woche, die das gesuchte Datum enthält. Das ganze wird
                     unter &lt;events> Root-Element verpackt.</para>
-                <para>Ähnlich verhält sich auch <emphasis role="italic"><emphasis role="bold"
-                            >"getforMonth.xquery"</emphasis></emphasis>, mit Monatsevents als
+                <para>Ähnlich verhält sich auch <emphasis role="italic"><emphasis role="bold">"getforMonth.xquery"</emphasis></emphasis>, mit Monatsevents als
                     Ergebnis.</para>
                 <para><emphasis role="underline">Was passiert innerhalb von
                         "isinPat"-Modul</emphasis> eher das Ergebnis geliefert wird?</para>
-                <para>Als Erstes, ruft die Funktion <emphasis role="italic"
-                        >local:forDay($d)</emphasis> die Funktion<emphasis role="italic">
+                <para>Als Erstes, ruft die Funktion <emphasis role="italic">local:forDay($d)</emphasis> die Funktion<emphasis role="italic">
                         <![CDATA[local:getEventsForDay ($d as xs:date?)]]></emphasis>. Diese muss
                     eine Sequenz ohne Root-Element von allen an diesem Tag stattfindenden Events ,
                     als "eventRule" mit allen dazugehörigen Attribute und Unterelemente, liefern-
@@ -503,8 +497,7 @@
                 <para>Um diese Sequenz zu bekommen, geht die Funktion<emphasis role="italic">
                         <![CDATA[local:getEventsForDay ($d as xs:date?)]]></emphasis> durch alle im
                     sampleCalendarX.xml gespeicherte Events (als "eventRule") und prüft deren
-                    "recurrencePattern"-Unterelement mithilfe von Funktion <emphasis role="italic"
-                        ><![CDATA[local:isDateInPattern ($d as xs:date, $p as xs:string?)]]></emphasis>
+                    "recurrencePattern"-Unterelement mithilfe von Funktion <emphasis role="italic"><![CDATA[local:isDateInPattern ($d as xs:date, $p as xs:string?)]]></emphasis>
                     :</para>
                 <para>Diese Funktion nimmt das Datum und den Patternnamen von "recurrencePattern"
                     als Argumente und liefert eine boolische Antwort, ob an diesem Datum dieses
@@ -513,10 +506,11 @@
                     Datum oder Pattern-type, muss die Funktion alle unter &lt;patterns> gespeicherte
                     Patterns durchgehen, bis sie den gesuchten Pattern findet und ihn dann bzgl. des
                     Datums prüft.</para>
-                <para><programlisting><![CDATA[ declare function local:isDateInPattern ($d as xs:date, $p as xs:string?) as xs:boolean
- {
- ((local:isInDaily($d, $p)) or (local:isInWeekly($d,$p))  or (local:isInUnion($d,$p)) or (local:isInIntersection($d,$p))or (local:isInDifference($d,$p)))
- };]]></programlisting></para>
+                <para><programlisting><![CDATA[ declare function local:isDateInPattern ($d as xs:date, $p as xs:string?)
+                    as xs:boolean {
+ ((local:isInDaily($d, $p)) or (local:isInWeekly($d,$p))  or
+ (local:isInUnion($d,$p)) or (local:isInIntersection($d,$p))or
+ (local:isInDifference($d,$p))) };]]></programlisting></para>
                 <para>Es gibt 2 einfache und 3 komplexe Patterns, die in Frage kommen. Für jeden
                     Pattern gibt es eine entsprechende Funktion: "isinDaily", "isinWeekly",
                     "isinDifference", isinUnion" und "isinIntersection". </para>
@@ -542,8 +536,7 @@
 </simplelist>
 
 
-                <para>Die Gedanke hinter der Aufbau der Funktion <emphasis role="italic"
-                        ><![CDATA[local:isDateInPattern ]]></emphasis> war, dass weil XQuery eine
+                <para>Die Gedanke hinter der Aufbau der Funktion <emphasis role="italic"><![CDATA[local:isDateInPattern ]]></emphasis> war, dass weil XQuery eine
                     funktionelle Sprache ist, wird die Funktion alle Pattern-Types nacheinander
                     durchgehen ( als erstes alle daily, dann alle weekly Patterns, etc.), und,
                     sobald der gesuchte Pattern zutrifft, Ergebnis liefern, ohne alle
@@ -575,17 +568,51 @@
                 es kleinere Probleme, so wurde auch mal schnell das Telefon in die Hand genommen
                 oder eine E-Mail geschrieben, um ein anderes Gruppenmitglied nach einer schnellen
                 Lösung zu fragen. Die Kommunikation funktionierte reibungslos und so konnten wir
-                fast immer alles, was wir uns zwischen zwei Treffen vorgenommen hatten, umgesetzen.
+                fast immer alles, was wir uns zwischen zwei Treffen vorgenommen hatten, umsetzen.
                 Alle Gruppenmitglieder waren motiviert und arbeiteten nahezu in gleichem Umfang am
                 Projekt. </para>
         </sect1>
         <sect1>
             <title>Thematik CalendarX</title>
-            <para/>
+            <para>Wir empfanden die Thematik CalendarX als sehr gutes Beispielprojekt, um uns in die
+                Arbeit mit XML, XSLT, XQuery, usw. einzuarbeiten. Keine von uns drei hatte vorher
+                Vorkenntnisse zu XML. Das Praktikum war durch die 5 Aufgabenblätter sehr
+                verständlich in einzelne Teil-Bereiche aufgeteilt, sodass man nicht alles auf einmal
+                erlenen musste, sondern einen Bereich nach dem anderen bearbeiten konnte. So
+                beschäftigten wir uns in den ersten Wochen vor allem mit der Darstellung der
+                Kalendersichten in SVG und der Sortierung der Events nach Datum mittels XSLT. Der
+                nächste Schritt bestand dann darin, anstelle von einfachen Events die SuperEvents
+                auszulesen und zu sortieren. Dazu wurden die ersten XQuery Funktionen benötigt. Im
+                letzten Teil des Projektes arbeiteten wir uns dann in das XML-Datenbanksystem eXist,
+                sowie in die Realisierung von CalendarX mit XForms ein. </para>
+            <para>Insgesamt kann man sagen, dass die Thematik CalendarX alle Bereiche der
+                XML-Entwicklung, die im Praktikum vermittelt werden sollen, vereint. Trotzdem
+                ermöglicht die Thematik wie bereits beschrieben die schrittweise Erlernung der
+                einzelnen Themen, was es für einen Studenten einfacher macht, die Bereiche zu
+                verstehen und umzusetzen. Deshalb ist CalendarX aus unserer Sicht eine sehr gutes
+                Beispiel für das XML-Praktikum.</para>
         </sect1>
         <sect1>
             <title>Organisation und Betreuung im Praktikum</title>
-            <para>Text</para>
+            <para>Die Organisation des Praktikums war aus unserer Sicht sehr zielführend. In der
+                Einarbeitungsphase im ersten Teil des Semesters, hatte jeder Teilnehmer die
+                Möglichkeit, Grundkenntnisse zu XML zu erlernen und Fragen zu stellen. Zudem bestand
+                die Möglichkeit, andere Praktikumsteilnehmer kennenzulernen und Gruppen zu bilden.
+                In der zweiten Hälfte des Semesters arbeiteten die Gruppen eigenständig am
+                Praktikumsprojekt. Sehr gut war, dass in einem Dokument genau festgehalten war, was
+                genau für die Testat-Abnahme gefordert ist und welche Anforderungen das Projekt
+                erfüllen soll. So wussten wir als Gruppe sehr genau was auf uns zu kam und konnten
+                das Projekt somit gut organisieren. </para>
+            <para>Die Betreuung im Praktikum war ebenfalls sehr gut. In den Präsenzterminen der
+                ersten Wochen hatte jedes Mitglied direkt die Chance der Kursleitung bzw. den
+                anderen Kursteilnehmern Fragen zu stellen. Über das ganze Praktikum hinweg war ein
+                Moodle Forum eingerichtet, wo man ebenfalls die Möglichkeit hatte, sowohl
+                organisatorische als auch inhaltliche Fragen zu stellen. </para>
+            <para>Sehr positiv fanden wir den Punkt, dass die Testat-Termine individuell vereinbart
+                werden konnten. Unsere Gruppe besteht aus drei Personen in unterschiedlichen
+                Semestern mit unterschiedlichen Prüfungen. Die individuelle Vereinbarung des
+                Testat-Termins ermöglichte es uns, auf alle Termine einzugehen und einvernehmlich
+                einen Präsentationstermin für das Praktikum festzulegen. </para>
         </sect1>
     </chapter>
 </book>
