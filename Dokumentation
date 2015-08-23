@@ -70,7 +70,10 @@
     <chapter>
         <title>Das Kalender-System CalendarX</title>
     <sect1>
-            <title>Die XRX-Architektur</title>            
+            <title>Die XRX-Architektur</title>     
+        <para>Die XRX Architektur baut vollständig auf XML auf. Für das Fronted kommt XForms zum Einsatz, die Verbindung zur Datenbank wird über eine ReSt Schnittselle realisiert
+        und XQuery dient zur Abfrage und Manipulation von XML Daten. Nachfolgend wird die "CalendarX Component Layer Structure" dargestellt. Die Anwendung soll ausschließlich auf der Ebene von XML
+        und verwandten Standards entwickelt werden.</para>
          <para><figure><title>CalendarX Component Layer Structure</title>
                 <mediaobject>
                    <imageobject>
