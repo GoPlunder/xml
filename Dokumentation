@@ -45,7 +45,26 @@
         </sect1>
         <sect1>
             <title>Ziel und Organisation des XML-Praktikums</title>
-            <para>Text</para>
+            <para>Ziel des Praktikums ist es, das System CalendarX zu implementieren und zu
+                dokumentieren. </para>
+            <para>Client-seitig soll CalendarX im Web-Browser dabei die Möglichkeit bieten,
+                Datumsangaben zu machen sowie eine Kalendersicht (Tages-, Wochen- oder Monatssicht)
+                auszuwählen und die zugehörigen Kalenderdaten als SVG-Graphik berechnen zu lassen
+                und anzuzeigen. Zudem soll jedes Event in der Kalendersicht mit einem Link versehen
+                werden, welcher die Event-Daten in ein editierbares Formular lädt. Die im
+                Eventformular durchgeführten Änderungen, sollen nach Bestätigung in die Datenbasis
+                übertragen werden, wobei das Datum eines Events nicht änderbar ist.</para>
+            <para>Die Dokumentation der Projektes erfolgt in DocBook und soll für die Abgabe in das
+                PDF-Format umgewandelt werden.</para>
+            <para>Der Ablauf des Praktikums verlief in zwei Phasen. In der ersten Hälfte des
+                Semesters wurden in 5 freiwilligen Terminen die Grundlagen von XML, XDM, XPath,
+                XSLT, XQuery, eXist, XForms und Docbook vermittelt. Zu jedem Termin gab es jeweils
+                ein Aufgabenblatt, das auf das Praktikum vorbereitete bzw. schon Teile der späteren
+                Projektentwicklung enthielt. Neben den Vorträgen der Kursleitung waren auch die
+                Präsentationen der einzelnen Gruppen über die Lösungen der Aufgabenblätter sehr
+                hilfreich für die eigene CalendarX-Entwicklung. In der zweiten Hälfte des Semesters
+                arbeitete jede Gruppe für sich am eigenen Projekt. Das Ergebnis wird am Ende des
+                Semesters in einer Präsentation vorgestellt.</para>
         </sect1>
     </chapter>
     <chapter>
@@ -538,12 +557,31 @@
     <chapter>
         <title>Reflexion</title>
         <sect1>
-            <title>Arbeit im Team</title>
-            <para>Text</para>
+            <title>Organisation der Arbeit im Team</title>
+            <para>Da unser Team nur aus drei Personen besteht, war die Kommunikation im Team relativ
+                einfach. Neben mehreren Treffen, erfolgte ein regelmäßiger Austausch per E-Mail und
+                per Telefon. Für die Entwicklung und Dokumentation des Projektes verwendeten wir das
+                Versionverwaltungssystem GitHub. Jedes Gruppenmitglied dokumentierte die Arbeit
+                direkt in der DocBook-Datei, sodass die übrigen Teilnehmer nochmal detaililert
+                nachlesen konnten, was genau gemacht wurde. Zudem wurde jedem Commit eine kurze
+                Beschreibung beigefügt.</para>
+            <para>Bei den Gruppen-Treffen stellte dann jedes Mitglied die von ihr entwickelten
+                Programmteile vor und das Team diskutierte eventuell aufgetretene Probleme. Danach
+                wurden die Schritte bis zum nächsten Treffen besprochen, in einer ToDo-Liste
+                festgehalten und als einzelne Aufgaben unter den Gruppenmitlgiedern aufgeteilt.
+                Jedes Gruppenmitglied hatte somit selbst die Möglichkeit mitzubestimmen, in welchen
+                Bereich sie sich bis zum nächsten Termin näher einarbeiten wollte.</para>
+            <para>Zusammenfassend bleibt festzuhalten, dass die Arbeit im Team sehr gut verlief. Gab
+                es kleinere Probleme, so wurde auch mal schnell das Telefon in die Hand genommen
+                oder eine E-Mail geschrieben, um ein anderes Gruppenmitglied nach einer schnellen
+                Lösung zu fragen. Die Kommunikation funktionierte reibungslos und so konnten wir
+                fast immer alles, was wir uns zwischen zwei Treffen vorgenommen hatten, umgesetzen.
+                Alle Gruppenmitglieder waren motiviert und arbeiteten nahezu in gleichem Umfang am
+                Projekt. </para>
         </sect1>
         <sect1>
             <title>Thematik CalendarX</title>
-            <para>Text</para>
+            <para/>
         </sect1>
         <sect1>
             <title>Organisation und Betreuung im Praktikum</title>
