@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <?xml-stylesheet type="text/xsl" href="tagessicht.xsl"?>
 <events date="2015-06-16">
     <event>
@@ -12,11 +13,28 @@
         <tagZuvor>2015-06-15</tagZuvor>
         <tagDanach>2015-06-17</tagDanach>
         <location>00.09.13A</location>
+=======
+<?xml version="1.0" encoding="UTF-8"?>
+<events date="2015-07-13">
+    <event>
+        <datum>2015-07-13</datum>
+        <datumWochenTag>1</datumWochenTag>
+        <datumJahresTag>194</datumJahresTag>
+        <startZeit>08:15</startZeit>
+        <startZeitInMin>495</startZeitInMin>
+        <endZeit>10:45</endZeit>
+        <endZeitInMin>645</endZeitInMin>
+        <beschreibung>another test for 2nd event in day</beschreibung>
+        <tagZuvor>2015-07-12</tagZuvor>
+        <tagDanach>2015-07-14</tagDanach>
+        <location>Neufahrn</location>
+>>>>>>> 0733780d6293c86608731731447252e014bcb64e
         <attendees>
             <attendee>Anne Brüggemann-Klein</attendee>
         </attendees>
     </event>
     <event>
+<<<<<<< HEAD
         <datum>2015-06-16</datum>
         <datumWochenTag>2</datumWochenTag>
         <datumJahresTag>167</datumJahresTag>
@@ -34,3 +52,21 @@
         </attendees>
     </event>
 </events>
+=======
+        <datum>2015-07-13</datum>
+        <datumWochenTag>1</datumWochenTag>
+        <datumJahresTag>194</datumJahresTag>
+        <startZeit>12:15</startZeit>
+        <startZeitInMin>735</startZeitInMin>
+        <endZeit>13:45</endZeit>
+        <endZeitInMin>825</endZeitInMin>
+        <beschreibung>EPS2015Mo</beschreibung>
+        <tagZuvor>2015-07-12</tagZuvor>
+        <tagDanach>2015-07-14</tagDanach>
+        <location>00.09.13A</location>
+        <attendees>
+            <attendee>Anne Brüggemann-Klein</attendee>
+        </attendees>
+    </event>
+</events>
+>>>>>>> 0733780d6293c86608731731447252e014bcb64e
